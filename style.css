@@ -736,10 +736,9 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   display: block;
 }
 
-.educator-avatar img.photo-zoom-out {
-  object-fit: cover;
-  transform: scale(0.85);
-  object-position: center center;
+.educator-avatar img.photo-zoom-in {
+  transform: scale(1.3);
+  object-position: center top;
 }
 
 .educator-card h3 {
