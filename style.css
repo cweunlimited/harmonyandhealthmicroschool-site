@@ -99,7 +99,8 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   font-size: 1.05rem;
   color: var(--text-mid);
   max-width: 680px;
-  margin-bottom: 52px;
+  margin: 0 auto 52px;
+  text-align: center;
 }
 
 /* ---------- Fade-in animations ---------- */
@@ -496,7 +497,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   background: var(--white);
   border-radius: var(--radius-lg);
   padding: 32px 28px;
-  text-align: left;
+  text-align: center;
   box-shadow: var(--shadow-sm);
   border: 1.5px solid var(--border);
   transition: var(--transition);
@@ -603,7 +604,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   border: 1.5px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 40px 30px;
-  text-align: left;
+  text-align: center;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -643,7 +644,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   align-items: center;
   justify-content: center;
   font-size: 1.9rem;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 }
 
 .navy-bg { background: var(--navy-light); }
@@ -667,6 +668,8 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   display: flex;
   flex-direction: column;
   gap: 8px;
+  text-align: left;
+  display: inline-flex;
 }
 
 .program-list li {
