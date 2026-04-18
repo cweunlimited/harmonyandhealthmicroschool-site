@@ -603,7 +603,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 40px 30px;
+  padding: 0;
   text-align: center;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
@@ -636,20 +636,25 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   white-space: nowrap;
 }
 
-.program-icon-wrap {
-  width: 62px;
-  height: 62px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.9rem;
-  margin: 0 auto 20px;
+.program-img-wrap {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
 }
 
-.navy-bg { background: var(--navy-light); }
-.red-bg  { background: var(--red-light); }
-.green-bg { background: var(--green-light); }
+.program-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+
+.program-card-body {
+  padding: 28px 28px 32px;
+}
 
 .program-card h3 {
   font-family: 'Fredoka One', cursive;
@@ -665,11 +670,10 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 }
 
 .program-list {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 8px;
   text-align: left;
-  display: inline-flex;
 }
 
 .program-list li {
