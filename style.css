@@ -1016,6 +1016,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   height: 110px;
   width: auto;
   margin: 0 auto 18px;
+  border-radius: 16px;
   display: block;
   filter: brightness(1.1);
 }
