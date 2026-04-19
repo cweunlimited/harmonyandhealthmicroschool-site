@@ -1245,6 +1245,12 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   }
 }
 
+.mobile-only { display: none; }
+
+@media (max-width: 480px) {
+  .mobile-only { display: inline; }
+}
+
 /* Mobile narrow */
 @media (max-width: 480px) {
   .hero-actions {
