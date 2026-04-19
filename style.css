@@ -1263,8 +1263,12 @@ h2.light, p.light, .section-intro.light { color: #fff; }
     text-align: center;
   }
 
-  .program-card, .educator-card {
+  .educator-card {
     padding: 28px 22px;
+  }
+
+  .program-card-body {
+    padding: 22px 22px 26px;
   }
 
   .about-card-body {
