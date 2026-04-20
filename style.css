@@ -1181,14 +1181,14 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 
   .nav-menu-hero {
     display: block;
-    width: 100%;
-    max-width: 320px;
-    margin-bottom: 8px;
+    width: calc(100% + 48px);
+    margin-left: -24px;
+    margin-right: -24px;
+    margin-bottom: 16px;
   }
 
   .nav-menu-hero img {
     width: 100%;
-    border-radius: 12px;
     display: block;
   }
 
