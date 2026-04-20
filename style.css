@@ -257,6 +257,8 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   transform: translateY(-1px);
 }
 
+.nav-menu-hero { display: none; }
+
 /* Hamburger */
 .nav-toggle {
   display: none;
@@ -1176,6 +1178,19 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   }
 
   .nav-links.open { display: flex; }
+
+  .nav-menu-hero {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 8px;
+  }
+
+  .nav-menu-hero img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
 
   .nav-links a {
     font-size: 1.1rem;
