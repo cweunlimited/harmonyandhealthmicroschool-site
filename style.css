@@ -298,9 +298,11 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 
 .hero img {
   width: 100%;
-  height: auto;
   display: block;
 }
+
+.hero-img-desktop { height: auto; }
+.hero .hero-img-mobile { display: none; }
 
 /* ---------- Hero text section (below the image) ---------- */
 .hero-text {
@@ -1162,6 +1164,16 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 
   /* Nav */
   .nav-toggle { display: flex; }
+
+  .hero .hero-img-desktop { display: none; }
+
+  .hero .hero-img-mobile {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 62px);
+    object-fit: cover;
+    object-position: 70% top;
+  }
 
   .nav-links {
     display: none;
