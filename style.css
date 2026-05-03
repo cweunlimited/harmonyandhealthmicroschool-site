@@ -32,6 +32,8 @@
   --transition:  all 0.3s ease;
 }
 
+html, body { overflow-x: hidden; }
+
 html { scroll-behavior: smooth; }
 
 body {
