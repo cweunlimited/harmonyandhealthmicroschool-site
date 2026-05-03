@@ -1227,7 +1227,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
     width: 100%;
     height: calc(100vh - 62px);
     object-fit: cover;
-    object-position: 40% top;
+    object-position: 50% top;
   }
 
   .nav-links {
