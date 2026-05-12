@@ -359,6 +359,19 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 .hero-img-desktop { height: auto; }
 .hero .hero-img-mobile { display: none; }
 
+/* ---------- Video section ---------- */
+.video-section {
+  background: var(--navy);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.video-wrap {
+  width: 100%;
+  max-width: 420px;
+}
+
 /* ---------- Hero text section (below the image) ---------- */
 .hero-text {
   background: var(--navy);
