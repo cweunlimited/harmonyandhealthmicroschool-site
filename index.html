@@ -681,18 +681,20 @@
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Scroll-triggered animations
+    // Scroll-triggered animations — observe the section, fire all children together
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.section-header, .reveal-stagger, .reveal').forEach(el => {
+            el.classList.add('visible');
+          });
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
-    document.querySelectorAll('.section-header, .reveal-stagger, .reveal').forEach(el => {
-      revealObserver.observe(el);
+    document.querySelectorAll('section').forEach(section => {
+      revealObserver.observe(section);
     });
 
     // Smooth scroll for anchor links
