@@ -344,20 +344,34 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 /* ============================================================
    HERO
    ============================================================ */
+/* ---------- Hero + Video wrapper ---------- */
+.hero-video-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 62px;
+}
+
+/* Desktop: hero first, video second */
+.hero-video-wrapper .hero   { order: 1; }
+.hero-video-wrapper .video-section { order: 2; }
+
+/* Mobile: video first, hero second */
+@media (max-width: 768px) {
+  .hero-video-wrapper .hero          { order: 2; }
+  .hero-video-wrapper .video-section { order: 1; }
+}
+
 /* ---------- Hero image (clean, no overlay) ---------- */
 .hero {
   width: 100%;
-  margin-top: 62px; /* clears the fixed navbar */
-  line-height: 0;   /* removes gap under img */
+  line-height: 0;
 }
 
 .hero img {
   width: 100%;
   display: block;
+  height: auto;
 }
-
-.hero-img-desktop { height: auto; }
-.hero .hero-img-mobile { display: none; }
 
 /* ---------- Video section ---------- */
 .video-section {
@@ -365,11 +379,34 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   display: flex;
   justify-content: center;
   padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative geometric pattern for sides */
+.video-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  z-index: 0;
+}
+
+.video-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(61,170,53,0.12) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(204,32,32,0.1) 0%, transparent 50%);
 }
 
 .video-wrap {
   width: 100%;
   max-width: 420px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------- Hero text section (below the image) ---------- */
