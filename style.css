@@ -1,22 +1,23 @@
 /* ============================================================
    Harmony and Health Microschool — stylesheet
    Colors derived from the brand logo:
-     Navy/Purple : #2B2D8E
-     Red         : #CC2020
-     Green       : #3DAA35
+     Purple : #3A1B72
+     Red    : #E81316
+     Green  : #68C438
    ============================================================ */
 
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy:        #2B2D8E;
-  --navy-dark:   #1e2070;
-  --navy-light:  #e8e9f8;
-  --red:         #CC2020;
-  --red-light:   #fde8e8;
-  --green:       #3DAA35;
-  --green-light: #e8f7e7;
+  --navy:        #3A1B72;
+  --navy-dark:   #2a1455;
+  --navy-light:  #ebe7f5;
+  --navy-bright: #5730C6;
+  --red:         #E81316;
+  --red-light:   #fde7e7;
+  --green:       #68C438;
+  --green-light: #e9f8e2;
   --white:       #ffffff;
   --off-white:   #fafbff;
   --bg-light:    #f4f5fc;
@@ -26,9 +27,9 @@
   --border:      #e0e2f0;
   --radius:      14px;
   --radius-lg:   22px;
-  --shadow-sm:   0 2px 8px rgba(43, 45, 142, 0.08);
-  --shadow-md:   0 6px 24px rgba(43, 45, 142, 0.12);
-  --shadow-lg:   0 16px 48px rgba(43, 45, 142, 0.16);
+  --shadow-sm:   0 2px 8px rgba(58, 27, 114, 0.08);
+  --shadow-md:   0 6px 24px rgba(58, 27, 114, 0.12);
+  --shadow-lg:   0 16px 48px rgba(58, 27, 114, 0.16);
   --transition:  all 0.3s ease;
 }
 
@@ -92,7 +93,7 @@ h2 {
 
 h2 em {
   font-style: normal;
-  color: var(--navy);
+  color: var(--navy-bright);
 }
 
 h2.light, p.light, .section-intro.light { color: #fff; }
@@ -135,23 +136,28 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   transform: translate(0);
 }
 
-/* Cards stagger: slide up from bottom, 0.5s between each */
-.reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+/* Cards stagger: slide up from bottom, 0.5s between each.
+   Uses a keyframe animation with backwards fill so the resting
+   transform is NOT pinned afterward, which keeps :hover float working. */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.reveal-stagger.visible > *:nth-child(1)  { opacity: 1; transform: translateY(0); transition-delay: 1.5s; }
-.reveal-stagger.visible > *:nth-child(2)  { opacity: 1; transform: translateY(0); transition-delay: 2.0s; }
-.reveal-stagger.visible > *:nth-child(3)  { opacity: 1; transform: translateY(0); transition-delay: 2.5s; }
-.reveal-stagger.visible > *:nth-child(4)  { opacity: 1; transform: translateY(0); transition-delay: 3.0s; }
-.reveal-stagger.visible > *:nth-child(5)  { opacity: 1; transform: translateY(0); transition-delay: 3.5s; }
-.reveal-stagger.visible > *:nth-child(6)  { opacity: 1; transform: translateY(0); transition-delay: 4.0s; }
-.reveal-stagger.visible > *:nth-child(7)  { opacity: 1; transform: translateY(0); transition-delay: 4.5s; }
-.reveal-stagger.visible > *:nth-child(8)  { opacity: 1; transform: translateY(0); transition-delay: 5.0s; }
-.reveal-stagger.visible > *:nth-child(9)  { opacity: 1; transform: translateY(0); transition-delay: 5.5s; }
-.reveal-stagger.visible > *:nth-child(10) { opacity: 1; transform: translateY(0); transition-delay: 6.0s; }
+.reveal-stagger > * { opacity: 0; }
+.reveal-stagger.visible > * {
+  opacity: 1;
+  animation: revealUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.reveal-stagger.visible > *:nth-child(1)  { animation-delay: 1.5s; }
+.reveal-stagger.visible > *:nth-child(2)  { animation-delay: 2.0s; }
+.reveal-stagger.visible > *:nth-child(3)  { animation-delay: 2.5s; }
+.reveal-stagger.visible > *:nth-child(4)  { animation-delay: 3.0s; }
+.reveal-stagger.visible > *:nth-child(5)  { animation-delay: 3.5s; }
+.reveal-stagger.visible > *:nth-child(6)  { animation-delay: 4.0s; }
+.reveal-stagger.visible > *:nth-child(7)  { animation-delay: 4.5s; }
+.reveal-stagger.visible > *:nth-child(8)  { animation-delay: 5.0s; }
+.reveal-stagger.visible > *:nth-child(9)  { animation-delay: 5.5s; }
+.reveal-stagger.visible > *:nth-child(10) { animation-delay: 6.0s; }
 
 /* Kept for any remaining .reveal/.fade-in usage */
 .reveal {
@@ -914,7 +920,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 }
 
 .navy-tag  { background: var(--navy-light);  color: var(--navy); }
-.green-tag { background: var(--green-light); color: #1e6e19; }
+.green-tag { background: var(--green-light); color: #3a7d18; }
 
 /* ============================================================
    FAQ — Accordion
@@ -1096,7 +1102,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
    FOOTER
    ============================================================ */
 .footer {
-  background: #111228;
+  background: var(--navy);
   color: rgba(255,255,255,0.75);
   padding: 60px 0 32px;
 }
