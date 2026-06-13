@@ -522,6 +522,14 @@
       });
     });
 
+    // Tap empty menu space (anything that is not a link) to close the menu
+    navLinks.addEventListener('click', (e) => {
+      if (!e.target.closest('a')) {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('active');
+      }
+    });
+
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {

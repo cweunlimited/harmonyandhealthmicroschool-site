@@ -323,6 +323,8 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 /* Hamburger */
 .nav-toggle {
   display: none;
+  position: relative;
+  z-index: 1001;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -346,6 +348,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
 .nav-toggle.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .nav-toggle.active span:nth-child(2) { opacity: 0; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.nav-toggle.active span { background: #fff; }
 
 /* ============================================================
    HERO
