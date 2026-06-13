@@ -1155,6 +1155,13 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   margin-top: 12px !important;
 }
 
+.footer-badge {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 20px auto 0;
+}
+
 .footer-nav h4,
 .footer-contact h4 {
   font-size: 0.85rem;
