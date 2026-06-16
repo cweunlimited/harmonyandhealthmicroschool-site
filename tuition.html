@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuition and Affordability | Harmony and Health Microschool</title>
+  <meta name="description" content="Tuition at Harmony and Health Microschool in Miami, FL. A premium, individualized K-5 education made affordable through Florida's school choice scholarship, inaugural family discounts, and flexible monthly payment plans.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://harmonyandhealthmicroschool.com/tuition">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tuition and Affordability | Harmony and Health Microschool">
+  <meta property="og:description" content="A premium, individualized K-5 education in Miami, made affordable through Florida's scholarship, inaugural discounts, and monthly payment plans.">
+  <meta property="og:image" content="https://harmonyandhealthmicroschool.com/og-image-v3.jpg">
+  <meta property="og:image:secure_url" content="https://harmonyandhealthmicroschool.com/og-image-v3.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="527">
+  <meta property="og:image:alt" content="Harmony and Health Microschool, Opening August 2026 in Miami, FL">
+  <meta property="og:url" content="https://harmonyandhealthmicroschool.com/tuition">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Harmony and Health Microschool">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tuition and Affordability | Harmony and Health Microschool">
+  <meta name="twitter:description" content="A premium, individualized K-5 education in Miami, made affordable through Florida's scholarship and flexible payment plans.">
+  <meta name="twitter:image" content="https://harmonyandhealthmicroschool.com/og-image-v3.jpg">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2159844891459560');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2159844891459560&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1GZ852S4E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1GZ852S4E');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Tuition page styles -->
+  <style>
+    .tuition-hero {
+      background: linear-gradient(135deg, var(--navy, #3A1B72) 0%, #2a1455 100%);
+      color: #fff;
+      text-align: center;
+      padding: 140px 20px 64px;
+    }
+    .tuition-hero .section-tag { background: rgba(255,255,255,0.16); color: #fff; }
+    .tuition-hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin: 18px 0 14px;
+      line-height: 1.12;
+    }
+    .tuition-hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.94;
+    }
+
+    /* Value grid */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .value-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 26px 24px;
+      box-shadow: 0 10px 30px rgba(58,27,114,0.08);
+      border: 1px solid #eef0f7;
+      border-top: 4px solid var(--green, #68C438);
+    }
+    .value-card h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--navy, #3A1B72);
+      font-size: 1.18rem;
+      margin: 0 0 10px;
+    }
+    .value-card p { color: #555; line-height: 1.6; margin: 0; font-size: 0.97rem; }
+
+    /* Cost breakdown card */
+    .cost-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(58,27,114,0.12);
+      border: 1px solid #eef0f7;
+      overflow: hidden;
+    }
+    .cost-card-head {
+      background: var(--navy, #3A1B72);
+      color: #fff;
+      text-align: center;
+      padding: 18px 20px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+    }
+    .cost-body { padding: 22px 28px 28px; }
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      font-size: 1.02rem;
+      color: var(--text-dark, #1a1c3a);
+      border-bottom: 1px dashed #e6e8f4;
+    }
+    .cost-row span:first-child { color: #555; padding-right: 16px; }
+    .cost-row.discount span:last-child { color: var(--green, #3DAA35); font-weight: 800; }
+    .cost-row.subtotal { font-weight: 800; }
+    .cost-row.total {
+      border-bottom: none;
+      border-top: 2px solid var(--navy, #3A1B72);
+      margin-top: 6px;
+      padding-top: 16px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy, #3A1B72);
+    }
+    .cost-row.total .amount-big {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .cost-row.total small, .pay-amount small { font-size: 0.85rem; color: #888; font-weight: 700; }
+    .cost-monthly {
+      text-align: center;
+      margin-top: 16px;
+      color: var(--text-dark, #1a1c3a);
+      font-size: 1.02rem;
+    }
+    .cost-monthly strong { color: var(--navy-bright, #5730C6); font-size: 1.3rem; font-family: 'Fredoka One', cursive; }
+    .cost-tip {
+      margin-top: 18px;
+      background: var(--green-light, #e9f8e2);
+      color: #2f6d14;
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .no-fees {
+      max-width: 560px;
+      margin: 26px auto 0;
+      background: #fff;
+      border: 2px dashed var(--green, #68C438);
+      border-radius: 16px;
+      padding: 22px 26px;
+      text-align: center;
+    }
+    .no-fees h3 { font-family: 'Fredoka One', cursive; color: var(--navy, #3A1B72); font-size: 1.2rem; margin: 0 0 8px; }
+    .no-fees p { color: #555; line-height: 1.6; margin: 0; font-size: 0.97rem; }
+
+    /* Payment options */
+    .pay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .pay-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 26px;
+      box-shadow: 0 10px 30px rgba(58,27,114,0.10);
+      border: 1px solid #eef0f7;
+      text-align: center;
+    }
+    .pay-card.featured { border: 2px solid var(--navy-bright, #5730C6); }
+    .pay-card h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--navy, #3A1B72);
+      font-size: 1.3rem;
+      margin: 0 0 8px;
+    }
+    .pay-amount {
+      font-family: 'Fredoka One', cursive;
+      color: var(--navy-bright, #5730C6);
+      font-size: 2.4rem;
+      line-height: 1;
+      margin: 6px 0 4px;
+    }
+    .pay-card > p { color: #666; font-size: 0.95rem; margin: 0 0 16px; }
+    .pay-card ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+    .pay-card li {
+      position: relative;
+      padding: 7px 0 7px 26px;
+      color: #444;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #f1f2f9;
+    }
+    .pay-card li:last-child { border-bottom: none; }
+    .pay-card li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--green, #3DAA35);
+      font-weight: 900;
+    }
+
+    /* Scholarship explainer */
+    .scholarship-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--navy-light, #ebe7f5);
+      border-radius: 18px;
+      padding: 30px 32px;
+      border-left: 6px solid var(--navy, #3A1B72);
+    }
+    .scholarship-box h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--navy, #3A1B72);
+      font-size: 1.4rem;
+      margin: 0 0 12px;
+    }
+    .scholarship-box p { color: #3a3c5a; line-height: 1.65; margin: 0 0 12px; }
+    .scholarship-box p:last-child { margin-bottom: 0; }
+
+    .finaid-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--green-light, #e9f8e2);
+      border-radius: 18px;
+      padding: 30px 32px;
+      border-left: 6px solid var(--green, #68C438);
+    }
+    .finaid-box h3 { font-family: 'Fredoka One', cursive; color: var(--navy, #3A1B72); font-size: 1.4rem; margin: 0 0 12px; }
+    .finaid-box p { color: #38492f; line-height: 1.65; margin: 0 0 12px; }
+    .finaid-box p:last-child { margin-bottom: 0; }
+
+    .tuition-note {
+      max-width: 760px;
+      margin: 26px auto 0;
+      font-size: 0.82rem;
+      color: #8a8da6;
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* CTA */
+    .tuition-cta { text-align: center; }
+    .tuition-cta .btn-primary { display: inline-block; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="nav-logo-text">Harmony and Health <span class="nav-logo-micro">Microschool</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-menu-hero"><img src="HarmonyAndHealth-Hero2.3.jpg" alt="Harmony and Health Microschool"></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#approach">Our Approach</a></li>
+        <li><a href="/#programs">Programs</a></li>
+        <li><a href="/#educators">Educators</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/tuition" class="active">Tuition</a></li>
+        <li><a href="/events">Events</a></li>
+        <li><a href="/#waitlist" class="nav-cta">Join the Waitlist</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="tuition-hero">
+    <div class="container">
+      <div class="section-tag">Tuition and Affordability</div>
+      <h1>A Premium Education, Made Within Reach</h1>
+      <p>Harmony and Health delivers something most schools simply do not: certified specialists, a class capped at 15, and a whole-child program of academics, music, and wellness. Here is what that investment looks like, and how Florida's scholarship, financial aid, and our family discounts bring it within reach.</p>
+    </div>
+  </header>
+
+  <!-- VALUE FIRST -->
+  <section class="value section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">What Your Tuition Includes</div>
+        <h2>Why Families Choose Harmony and Health</h2>
+        <p class="section-intro">Tuition reflects a genuinely specialized experience, not a one-size-fits-all classroom. Every dollar goes toward individual attention and expert instruction your child receives every single day.</p>
+      </div>
+
+      <div class="value-grid reveal-stagger">
+        <div class="value-card">
+          <h3>A Class of Just 15</h3>
+          <p>Our first year is capped at 15 students total, so every child is known, challenged, and supported individually, every single day.</p>
+        </div>
+        <div class="value-card">
+          <h3>Certified Music Education</h3>
+          <p>Daily instruction from a Florida-certified K-12 music educator with 13 years of experience, woven into the core of the school day, not an occasional add-on.</p>
+        </div>
+        <div class="value-card">
+          <h3>Wellness, Fitness and Nutrition</h3>
+          <p>A professional, NASM-trained wellness coach guides movement, nutrition, and healthy habits daily, building lifelong physical and mental well-being.</p>
+        </div>
+        <div class="value-card">
+          <h3>A Fully Individualized Curriculum</h3>
+          <p>An accredited, adaptive curriculum meets each child exactly at their level and pace across every core subject, never holding them back or leaving them behind.</p>
+        </div>
+        <div class="value-card">
+          <h3>Taught by Specialists, Not Aides</h3>
+          <p>Your child learns directly from two credentialed professional educators, not a single generalist supervising an app.</p>
+        </div>
+        <div class="value-card">
+          <h3>The Whole Child</h3>
+          <p>Academics, music, movement, and mindfulness in one cohesive day, nurturing the mind, body, and character together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST BREAKDOWN -->
+  <section class="cost section bg-light">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">The Real Numbers</div>
+        <h2>What You Can Actually Expect to Pay</h2>
+        <p class="section-intro">Florida now funds private education for every student, regardless of income. Combined with our inaugural family discount, here is what tuition looks like for most families.</p>
+      </div>
+
+      <div class="cost-card reveal">
+        <div class="cost-card-head">Estimated Tuition Per Student (2026 to 2027)</div>
+        <div class="cost-body">
+          <div class="cost-row"><span>Annual tuition</span><span>$22,000</span></div>
+          <div class="cost-row discount"><span>Inaugural family discount (5%)</span><span>-$1,100</span></div>
+          <div class="cost-row subtotal"><span>Subtotal</span><span>$20,900</span></div>
+          <div class="cost-row discount"><span>Florida scholarship (estimated)</span><span>-$8,000</span></div>
+          <div class="cost-row total"><span>Your estimated tuition</span><span class="amount-big">$12,900<small> / yr</small></span></div>
+          <div class="cost-monthly">a $350 enrollment deposit, then about <strong>$1,255</strong> per month for 10 months</div>
+          <div class="cost-tip">Paying in full? Save another 5% and your estimated tuition drops to about $11,800 for the year.</div>
+        </div>
+      </div>
+
+      <div class="no-fees reveal">
+        <h3>One Tuition. No Hidden Fees.</h3>
+        <p>Most schools stack separate registration, technology, and supply fees on top of tuition. We have built all of that into one transparent price, so there are no surprise add-ons during the year. The only additional item is a one-time $350 enrollment fee to reserve your child's spot, and it is applied directly toward your tuition rather than charged on top of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT OPTIONS -->
+  <section class="pay section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Flexible Payments</div>
+        <h2>Choose What Works for Your Family</h2>
+        <p class="section-intro">Pay in full and save the most, or spread tuition into even, predictable monthly payments across the 10-month school year.</p>
+      </div>
+
+      <div class="pay-grid reveal-stagger">
+        <div class="pay-card">
+          <h3>Pay in Full</h3>
+          <div class="pay-amount">~$11,800<small> / yr</small></div>
+          <p>One payment before the school year begins.</p>
+          <ul>
+            <li>5% inaugural family discount</li>
+            <li>Additional 5% pay-in-full discount</li>
+            <li>Florida scholarship applied</li>
+            <li>The lowest total tuition</li>
+          </ul>
+        </div>
+        <div class="pay-card featured">
+          <h3>Monthly Plan</h3>
+          <div class="pay-amount">~$1,255<small> / mo</small></div>
+          <p>10 equal payments across the school year.</p>
+          <ul>
+            <li>5% inaugural family discount</li>
+            <li>Florida scholarship applied</li>
+            <li>$350 enrollment deposit, credited to tuition</li>
+            <li>Even, predictable budgeting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOLARSHIP EXPLAINER -->
+  <section class="scholarship section bg-light">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Florida School Choice</div>
+        <h2>Florida Helps Pay for It</h2>
+      </div>
+
+      <div class="scholarship-box reveal">
+        <h3>Every Florida Family Now Qualifies</h3>
+        <p>Through Florida's Family Empowerment Scholarship (FES-EO) and Florida Tax Credit Scholarship, <strong>every K-12 student in Florida is eligible</strong> for private education funding, regardless of household income. For most families this is approximately <strong>$8,000 per year</strong> applied directly toward tuition.</p>
+        <p>These scholarships are administered by Step Up For Students. We will personally guide your family through the application so the funding is in place before the school year begins.</p>
+      </div>
+
+      <p class="tuition-note">All figures shown are estimates for the 2026 to 2027 school year and are provided for illustration only. Scholarship eligibility and award amounts are determined by the State of Florida and Step Up For Students, vary by grade level and circumstance, and are not guaranteed. We are glad to walk through your family's specific numbers in person.</p>
+    </div>
+  </section>
+
+  <!-- FINANCIAL AID -->
+  <section class="finaid section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Need-Based Support</div>
+        <h2>Financial Aid for Families Who Need It</h2>
+        <p class="section-intro">Cost should never be the only reason a child misses out on the right education. Beyond the state scholarship, we offer confidential, need-based financial aid.</p>
+      </div>
+
+      <div class="finaid-box reveal">
+        <h3>A Private, Straightforward Process</h3>
+        <p>Families who would like to be considered submit their income documentation through a secure, confidential review. It returns a determination directly to us, and we then reach out to you personally to discuss how we can help make tuition work for your family.</p>
+        <p>Every application is reviewed individually and kept completely private. If you think your family may benefit, we encourage you to reach out. There is no downside to starting the conversation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="tuition-cta-section section">
+    <div class="container">
+      <div class="section-header tuition-cta">
+        <div class="section-tag">Let's Make It Work</div>
+        <h2>Questions About Affordability?</h2>
+        <p class="section-intro">Every family's situation is different. Join our waitlist and we will personally walk you through tuition, the Florida scholarship, and the payment plan that fits your family best.</p>
+        <a href="/#waitlist" class="btn-primary">Join the Waitlist</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo-footer.png" alt="Harmony and Health Microschool" class="footer-logo">
+          <p>A personalized K&#8211;5 microschool<br>coming to Miami, FL.</p>
+          <p class="footer-opening">Opening August 2026</p>
+          <p class="footer-legal">Harmony and Health Microschool</p>
+          <img src="catalyst-partner-badge.svg" alt="Kaipod Catalyst Partner" class="footer-badge">
+        </div>
+
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/#about">About Us</a></li>
+            <li><a href="/#approach">Our Approach</a></li>
+            <li><a href="/#programs">Programs</a></li>
+            <li><a href="/#educators">Meet the Educators</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/tuition">Tuition</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/#waitlist">Join the Waitlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <a href="mailto:info@harmonyandhealthmicroschool.com" class="footer-email">
+            info@harmonyandhealthmicroschool.com
+          </a>
+          <a href="tel:7865050768" class="footer-email">
+            786.505.0768
+          </a>
+          <p class="footer-location">&#128205; Miami, FL</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/harmonyandhealthmicroschool" target="_blank" rel="noopener" aria-label="Follow us on Facebook" class="social-btn facebook-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.instagram.com/harmonyandhealthmicroschool" target="_blank" rel="noopener" aria-label="Follow us on Instagram" class="social-btn instagram-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Harmony and Health Microschool. All rights reserved.</p>
+        <p>Harmony and Health Microschool, Miami, FL</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      toggle.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll-triggered animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.section-header, .reveal-stagger, .reveal').forEach(el => {
+            el.classList.add('visible');
+          });
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('section').forEach(section => {
+      revealObserver.observe(section);
+    });
+
+    // Smooth scroll for in-page anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
