@@ -298,6 +298,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   color: var(--text-dark);
   padding: 8px 14px;
   border-radius: 100px;
+  white-space: nowrap;
   transition: var(--transition);
 }
 
@@ -310,7 +311,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   background: var(--red);
   color: #fff !important;
   padding: 9px 22px;
-  box-shadow: 0 2px 12px rgba(204, 32, 32, 0.3);
+  box-shadow: 0 2px 12px rgba(232, 19, 22, 0.3);
 }
 
 .nav-links a.nav-cta:hover {
@@ -1255,12 +1256,47 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   }
 }
 
+/* Nav collapses to the hamburger menu here so the full menu (now including Tuition)
+   never crowds or wraps the waitlist button on medium screens. */
+@media (max-width: 1150px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
+    background: var(--navy-dark);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    padding: 20px 24px 40px;
+    overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+
+  .nav-menu-hero {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 16px;
+  }
+  .nav-menu-hero img { width: 100%; height: auto; display: block; border-radius: 14px; }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    color: #fff;
+    padding: 10px 28px;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+  .navbar.scrolled .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+}
+
 /* Mobile wide */
 @media (max-width: 768px) {
   .section { padding: 68px 0; }
-
-  /* Nav */
-  .nav-toggle { display: flex; }
 
   .hero .hero-img-desktop { display: none; }
 
@@ -1271,47 +1307,6 @@ h2.light, p.light, .section-intro.light { color: #fff; }
     object-fit: cover;
     object-position: 50% top;
   }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 100vh;
-    background: var(--navy-dark);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    z-index: 999;
-    padding: 24px;
-  }
-
-  .nav-links.open { display: flex; }
-
-  .nav-menu-hero {
-    display: block;
-    width: calc(100% + 48px);
-    margin-left: -24px;
-    margin-right: -24px;
-    margin-bottom: 16px;
-  }
-
-  .nav-menu-hero img {
-    width: 100%;
-    display: block;
-  }
-
-  .nav-links a {
-    font-size: 1.1rem;
-    color: #fff;
-    padding: 12px 28px;
-  }
-
-  .nav-links a:hover {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-  }
-  .navbar.scrolled .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
 
   /* Hero */
   .hero-logo { height: 100px; }
