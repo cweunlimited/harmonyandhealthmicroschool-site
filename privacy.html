@@ -19,7 +19,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/sourceserif-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dmsans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=optional" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
@@ -74,6 +76,8 @@
     .legal-contact-box h2 { margin-top: 0; }
     .legal-contact-box p { margin-bottom: 6px; }
   </style>
+
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
 
@@ -109,6 +113,8 @@
       <div class="legal-updated">Last updated: June 23, 2026</div>
     </div>
   </header>
+
+  <div class="grad-band">
 
   <!-- BODY -->
   <section class="section">
@@ -191,6 +197,7 @@
       </div>
     </div>
   </section>
+  </div><!-- /grad-band -->
 
   <!-- FOOTER -->
   <footer class="footer">

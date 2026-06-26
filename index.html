@@ -192,9 +192,13 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/sourceserif-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dmsans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=optional" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
 
@@ -221,20 +225,15 @@
     </div>
   </nav>
 
+  <div class="grad-pair grad-pair-first">
+  <div class="grad-band grad-band-first">
+
   <!-- HERO + VIDEO WRAPPER -->
   <div class="hero-video-wrapper" id="home">
 
     <!-- HERO IMAGE -->
     <section class="hero">
       <img src="HarmonyAndHealth-Hero2.3.jpg" alt="Harmony and Health Microschool, children learning, making music, and playing outdoors">
-    </section>
-
-    <!-- VIDEO -->
-    <section class="video-section">
-      <div class="video-wrap">
-        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1201111036?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="A Day in the Life at Harmony and Health Microschool"></iframe></div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-      </div>
     </section>
 
   </div>
@@ -274,9 +273,27 @@
       </div>
     </div>
   </section>
+  </div><!-- /grad-band -->
+
+  <!-- A DAY IN THE LIFE (video) -->
+  <section class="video-section section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">A Day in the Life</div>
+        <h2>See Our School in Motion</h2>
+      </div>
+      <div class="video-wrap">
+        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1201111036?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="A Day in the Life at Harmony and Health Microschool"></iframe></div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+    </div>
+  </section>
+  </div><!-- /grad-pair -->
+
+  <div class="grad-pair">
 
   <!-- ABOUT -->
-  <section id="about" class="about section">
+  <section id="about" class="about section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Our Story</div>
@@ -357,9 +374,12 @@
       </div>
     </div>
   </section>
+  </div><!-- /grad-pair -->
+
+  <div class="grad-pair">
 
   <!-- APPROACH -->
-  <section id="approach" class="approach section">
+  <section id="approach" class="approach section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Our Approach</div>
@@ -436,11 +456,11 @@
         </div>
 
         <div class="program-card featured-card">
-          <div class="featured-ribbon">Heart of Our School</div>
           <div class="program-img-wrap">
             <img src="HarmonyAndHealth-choir3-hero2.0.jpg" alt="Music Education at Harmony and Health Microschool">
           </div>
           <div class="program-card-body">
+            <div class="featured-ribbon">Heart of Our School</div>
             <h3>Music Education</h3>
             <p>Taught by a certified K–12 music educator, students explore music through performance, theory, and creative expression, developing discipline and a lifelong love of the arts.</p>
             <ul class="program-list">
@@ -475,9 +495,12 @@
       </div>
     </div>
   </section>
+  </div><!-- /grad-pair -->
+
+  <div class="grad-pair">
 
   <!-- EDUCATORS -->
-  <section id="educators" class="educators section">
+  <section id="educators" class="educators section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Meet the Educators</div>
@@ -611,9 +634,12 @@
       </div>
     </div>
   </section>
+  </div><!-- /grad-pair -->
+
+  <div class="grad-pair">
 
   <!-- WAITLIST -->
-  <section id="waitlist" class="waitlist section">
+  <section id="waitlist" class="waitlist section grad-band">
     <div class="waitlist-bg"></div>
     <div class="container waitlist-inner">
       <div class="section-header">
@@ -637,6 +663,7 @@
       </script>
     </div>
   </section>
+  </div><!-- /grad-pair -->
 
   <!-- FOOTER -->
   <footer class="footer">

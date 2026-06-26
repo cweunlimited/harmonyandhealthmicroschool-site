@@ -56,7 +56,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/sourceserif-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dmsans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=optional" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
@@ -242,6 +244,8 @@
     }
     .btn-outline:hover { background: var(--navy, #3A1B72); color: #fff; }
   </style>
+
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
 
@@ -278,7 +282,7 @@
   </header>
 
   <!-- THE WEEK -->
-  <section class="week section">
+  <section class="week section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Our Week</div>
@@ -342,7 +346,7 @@
   </section>
 
   <!-- DAILY PROGRAMS -->
-  <section class="daily section">
+  <section class="daily section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Every Single Day</div>
@@ -366,7 +370,7 @@
           </div>
         </div>
         <div class="feature-card has-img accent-green">
-          <div class="feature-img"><img src="program-garden.jpg" alt="Potted plants growing in the classroom" style="object-position: bottom;"></div>
+          <div class="feature-img"><img src="program-garden-cropped.jpg" alt="Potted plants growing in the classroom"></div>
           <div class="feature-card-body">
             <h3>Garden and Nutrition</h3>
             <p>Tending our garden and learning where food comes from, connecting children to healthy eating in a hands-on way.</p>
@@ -415,7 +419,7 @@
   </section>
 
   <!-- WHO THRIVES -->
-  <section class="thrives section">
+  <section class="thrives section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">The Right Fit</div>
@@ -472,7 +476,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="programs-cta-section section">
+  <section class="programs-cta-section section grad-band">
     <div class="container">
       <div class="section-header programs-cta">
         <div class="section-tag">Next Steps</div>

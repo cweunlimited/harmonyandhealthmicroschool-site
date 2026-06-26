@@ -56,7 +56,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/sourceserif-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dmsans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=optional" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
@@ -274,6 +276,8 @@
     .tuition-cta { text-align: center; }
     .tuition-cta .btn-primary { display: inline-block; margin-top: 8px; }
   </style>
+
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
 
@@ -310,7 +314,7 @@
   </header>
 
   <!-- VALUE FIRST -->
-  <section class="value section">
+  <section class="value section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">What Your Tuition Includes</div>
@@ -374,7 +378,7 @@
   </section>
 
   <!-- SCHOLARSHIP EXPLAINER -->
-  <section class="scholarship section">
+  <section class="scholarship section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Florida School Choice</div>
