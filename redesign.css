@@ -308,6 +308,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   .program-card:nth-child(even) .program-img-wrap { order: 0 !important; }
   .about-img-wrap, .approach-img-wrap, .program-img-wrap { max-width: 100% !important; }
   .about-cards, .approach-steps, .programs-grid { gap: 56px !important; }
+  /* Mobile hero: full-width at natural height (no 46vh letterbox bands) */
+  .hero img { height: auto !important; width: 100% !important; }
 }
 
 /* ---- Tags: soft lavender / green pills ---- */
