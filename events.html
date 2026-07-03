@@ -140,34 +140,108 @@
   }
   </script>
 
-  <!-- Cookiebot consent banner (must load before all trackers) -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="94dc43cf-c213-4bf2-bef9-511d82f9af22" data-blockingmode="auto" type="text/javascript"></script>
-
-  <!-- Meta Pixel Code -->
+  <!-- Silktide Consent Manager (loads Google Analytics + Meta Pixel only after consent) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" id="silktide-consent-manager-css" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css" integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/" crossorigin="anonymous">
+  <style id="silktide-consent-manager-overrides">
+  #stcm-wrapper {
+    --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
+    --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
+    --primaryColor: #5730C6;
+    --backgroundColor: #ffffff;
+    --textColor: #4b494b;
+    --backdropBackgroundColor: #00000033;
+    --backdropBackgroundBlur: 0px;
+    --iconColor: #5730C6;
+    --iconBackgroundColor: #FFFFFF;
+  }
+  </style>
+  <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js" integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq" crossorigin="anonymous"></script>
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2159844891459560');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2159844891459560&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1GZ852S4E"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-J1GZ852S4E');
+  window.silktideConsentManager.init({
+    backdrop: {
+      show: false
+    },
+    icon: {
+      position: "bottomLeft"
+    },
+    prompt: {
+      position: "bottomCenter"
+    },
+    consentTypes: [
+      {
+        id: "essential",
+        label: "Essential",
+        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+        required: true,
+        onAccept: function() {
+          console.log('Add logic for the required Essential consent type here');
+        }
+      },
+      {
+        id: "analytics",
+        label: "Analytics",
+        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+        required: false,
+        gtag: "analytics_storage",
+        scripts: [
+          {
+            url: "https://www.googletagmanager.com/gtag/js?id=G-J1GZ852S4E",
+            load: "async"
+          }
+        ],
+        onAccept: function() {
+          // Google Analytics 4 (G-J1GZ852S4E)
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { window.dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'G-J1GZ852S4E');
+        }
+      },
+      {
+        id: "marketing",
+        label: "Marketing",
+        description: "<p>These cookies are used by us and our advertising partners to show you relevant ads on this site and elsewhere, and to measure how those campaigns perform.</p>",
+        required: false,
+        gtag: [
+          "ad_storage",
+          "ad_user_data",
+          "ad_personalization"
+        ],
+        scripts: [
+          {
+            url: "https://connect.facebook.net/en_US/fbevents.js",
+            load: "async"
+          }
+        ],
+        onAccept: function() {
+          // Meta Pixel (2159844891459560)
+          window.fbq = window.fbq || function () { (window.fbq.q = window.fbq.q || []).push(arguments); };
+          window.fbq('init', '2159844891459560');
+          window.fbq('track', 'PageView');
+        }
+      }
+    ],
+    text: {
+      prompt: {
+        description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic.</p>",
+        acceptAllButtonText: "Accept all",
+        acceptAllButtonAccessibleLabel: "Accept all cookies",
+        rejectNonEssentialButtonText: "Reject non-essential",
+        rejectNonEssentialButtonAccessibleLabel: "Reject all non-essential cookies",
+        preferencesButtonText: "Preferences",
+        preferencesButtonAccessibleLabel: "Toggle preferences"
+      },
+      preferences: {
+        title: "Customize your cookie preferences",
+        description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
+        saveButtonText: "Save and close",
+        saveButtonAccessibleLabel: "Save your cookie preferences",
+        creditLinkText: "Get this banner for free",
+        creditLinkAccessibleLabel: "Get this banner for free"
+      }
+    }
+  });
   </script>
 
   <!-- Google Fonts -->
