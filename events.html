@@ -318,6 +318,10 @@
     }
 
     /* RSVP expanding panel */
+    /* Past events: muted, and their RSVP forms are stripped out */
+    .event-card-past { opacity: 0.92; }
+    .event-card-past .event-date-badge { filter: saturate(0.45); }
+
     /* Empty state: shown when there are no upcoming events */
     .events-empty {
       max-width: 620px;
@@ -403,7 +407,47 @@
 
       <div class="events-grid reveal-stagger">
 
-        <!-- ===================== EVENT 1 ===================== -->
+        <!-- Events auto-move to the Past Events archive once their end time passes. -->
+
+        <!-- ===================== Fuel & Fun (Jul 2) ===================== -->
+        <article class="event-card event-card-accent-red" data-ends="2026-07-02T19:00:00-04:00">
+          <div class="event-date-badge">
+            <span class="ev-month">Jul</span>
+            <span class="ev-day">2</span>
+          </div>
+          <div class="event-body">
+            <div class="event-series">Sunset Park: Play and Learn Series</div>
+            <h3>Fuel &amp; Fun!</h3>
+            <div class="event-meta">
+              <span>&#128197; Thursday, July 2, 2026</span>
+              <span>&#128336; 5:30 to 7:00 PM</span>
+              <span>&#128205; <a href="https://www.google.com/maps/search/?api=1&amp;query=7321+SW+97th+Ave%2C+Miami%2C+FL+33173" target="_blank" rel="noopener">Sunset Park, 7321 SW 97th Ave, Miami, FL</a></span>
+            </div>
+            <p class="event-activities"><strong>Kids:</strong> Parachute Teamwork &amp; Freeze Dance!<br>
+            <strong>Parents:</strong> Snacks &amp; Sneakers. A chat on childhood nutrition to fuel active minds.</p>
+          </div>
+        </article>
+
+        <!-- ===================== Mindful Movement (Jul 9) ===================== -->
+        <article class="event-card event-card-accent-green" data-ends="2026-07-09T19:00:00-04:00">
+          <div class="event-date-badge">
+            <span class="ev-month">Jul</span>
+            <span class="ev-day">9</span>
+          </div>
+          <div class="event-body">
+            <div class="event-series">Sunset Park: Play and Learn Series</div>
+            <h3>Mindful Movement</h3>
+            <div class="event-meta">
+              <span>&#128197; Thursday, July 9, 2026</span>
+              <span>&#128336; 5:30 to 7:00 PM</span>
+              <span>&#128205; <a href="https://www.google.com/maps/search/?api=1&amp;query=7321+SW+97th+Ave%2C+Miami%2C+FL+33173" target="_blank" rel="noopener">Sunset Park, 7321 SW 97th Ave, Miami, FL</a></span>
+            </div>
+            <p class="event-activities"><strong>Kids:</strong> Obstacle Courses &amp; Guided Breathing Games!<br>
+            <strong>Parents:</strong> Calm &amp; Connected. A chat on managing childhood stress and big emotions.</p>
+          </div>
+        </article>
+
+        <!-- ===================== Creative Community (Jul 18) ===================== -->
         <article class="event-card event-card-accent-navy" data-ends="2026-07-18T16:30:00-04:00">
           <div class="event-date-badge">
             <span class="ev-month">Jul</span>
@@ -438,6 +482,19 @@
         <p>Leave your information and we will make sure you are the first to know.</p>
         <a href="/#waitlist" class="btn-primary">Request Information</a>
       </div>
+    </div>
+  </section>
+
+  <!-- PAST EVENTS (filled automatically as events pass; hidden while empty) -->
+  <section class="past-events section" id="pastEvents" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Our Community</div>
+        <h2>Past Events</h2>
+        <p class="section-intro">A look back at the family events we have hosted. RSVPs are closed for these, but new dates are always on the way.</p>
+      </div>
+
+      <div class="events-grid" id="pastEventsGrid"></div>
     </div>
   </section>
 
@@ -573,22 +630,48 @@
       });
     });
 
-    // Auto-expire events: drop any card whose end time has passed. If nothing
-    // upcoming is left, swap the section over to the "new dates coming" state.
+    // Event lifecycle: once an event's end time passes it moves out of
+    // "Upcoming" into the "Past Events" archive, and its RSVP form is removed.
     (function () {
-      const now = new Date();
+      const now          = new Date();
+      const upcomingGrid = document.querySelector('.events-list .events-grid');
+      const pastSection  = document.getElementById('pastEvents');
+      const pastGrid     = document.getElementById('pastEventsGrid');
+
       document.querySelectorAll('.event-card[data-ends]').forEach(card => {
-        if (new Date(card.dataset.ends) < now) card.remove();
+        if (new Date(card.dataset.ends) >= now) return;  // still upcoming
+
+        // Past events are history, not bookable: drop the RSVP button + form.
+        const btn   = card.querySelector('.rsvp-toggle');
+        const panel = card.querySelector('.rsvp-panel');
+        if (btn) btn.remove();
+        if (panel) panel.remove();
+
+        card.classList.add('event-card-past');
+        if (pastGrid) pastGrid.appendChild(card);
       });
 
-      if (!document.querySelector('.event-card')) {
-        const grid    = document.querySelector('.events-grid');
+      // Reveal the archive only once something is in it, most recent first.
+      if (pastGrid && pastGrid.children.length) {
+        Array.from(pastGrid.children)
+          .sort((a, b) => new Date(b.dataset.ends) - new Date(a.dataset.ends))
+          .forEach(card => pastGrid.appendChild(card));
+
+        if (pastSection) {
+          pastSection.style.display = '';
+          pastSection.querySelectorAll('.section-header, .reveal-stagger, .reveal')
+            .forEach(el => el.classList.add('visible'));
+        }
+      }
+
+      // Nothing upcoming left: swap in the "new dates coming" placeholder.
+      if (upcomingGrid && !upcomingGrid.querySelector('.event-card')) {
         const intro   = document.querySelector('.events-list .section-intro');
         const tag     = document.querySelector('.events-list .section-tag');
         const heading = document.querySelector('.events-list h2');
         const empty   = document.getElementById('eventsEmpty');
 
-        if (grid) grid.style.display = 'none';
+        upcomingGrid.style.display = 'none';
         if (intro) intro.style.display = 'none';
         if (tag) tag.textContent = 'Stay Tuned';
         if (heading) heading.textContent = 'No Upcoming Events Right Now';
