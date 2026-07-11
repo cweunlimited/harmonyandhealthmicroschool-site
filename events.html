@@ -318,6 +318,22 @@
     }
 
     /* RSVP expanding panel */
+    /* Empty state: shown when there are no upcoming events */
+    .events-empty {
+      max-width: 620px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ebe7f5;
+      border-radius: 16px;
+      box-shadow: rgba(58,27,114,0.07) 0 0 0 1px, rgba(58,27,114,0.06) 0 10px 15px -3px;
+      padding: 46px 36px;
+      text-align: center;
+    }
+    .events-empty-icon { font-size: 2.4rem; line-height: 1; margin-bottom: 16px; }
+    .events-empty h3 { margin: 0 0 14px; }
+    .events-empty p { margin: 0 0 14px; }
+    .events-empty .btn-primary { display: inline-block; margin-top: 10px; }
+
     .rsvp-toggle {
       font-family: inherit;
       border: none;
@@ -388,7 +404,7 @@
       <div class="events-grid reveal-stagger">
 
         <!-- ===================== EVENT 1 ===================== -->
-        <article class="event-card event-card-accent-navy">
+        <article class="event-card event-card-accent-navy" data-ends="2026-07-18T16:30:00-04:00">
           <div class="event-date-badge">
             <span class="ev-month">Jul</span>
             <span class="ev-day">18</span>
@@ -412,6 +428,15 @@
           </div>
         </article>
 
+      </div>
+
+      <!-- Shown automatically once every event above has passed -->
+      <div class="events-empty" id="eventsEmpty" style="display:none;">
+        <div class="events-empty-icon">&#128197;</div>
+        <h3>New Dates Coming Soon</h3>
+        <p>Our community events are on a short pause while we prepare our location for our August 2026 opening. We will post new dates here as soon as they are set.</p>
+        <p>Leave your information and we will make sure you are the first to know.</p>
+        <a href="/#waitlist" class="btn-primary">Request Information</a>
       </div>
     </div>
   </section>
@@ -547,6 +572,29 @@
         btn.textContent = isOpen ? 'Close form' : 'RSVP for this event';
       });
     });
+
+    // Auto-expire events: drop any card whose end time has passed. If nothing
+    // upcoming is left, swap the section over to the "new dates coming" state.
+    (function () {
+      const now = new Date();
+      document.querySelectorAll('.event-card[data-ends]').forEach(card => {
+        if (new Date(card.dataset.ends) < now) card.remove();
+      });
+
+      if (!document.querySelector('.event-card')) {
+        const grid    = document.querySelector('.events-grid');
+        const intro   = document.querySelector('.events-list .section-intro');
+        const tag     = document.querySelector('.events-list .section-tag');
+        const heading = document.querySelector('.events-list h2');
+        const empty   = document.getElementById('eventsEmpty');
+
+        if (grid) grid.style.display = 'none';
+        if (intro) intro.style.display = 'none';
+        if (tag) tag.textContent = 'Stay Tuned';
+        if (heading) heading.textContent = 'No Upcoming Events Right Now';
+        if (empty) empty.style.display = 'block';
+      }
+    })();
   </script>
 
   <!-- JotForm auto-resize handler (loaded once; registered per form when first opened) -->
