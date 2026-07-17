@@ -101,8 +101,12 @@
           }
         ],
         onAccept: function() {
-          // Meta Pixel (2159844891459560)
-          window.fbq = window.fbq || function () { (window.fbq.q = window.fbq.q || []).push(arguments); };
+          // Meta Pixel (2159844891459560) - standard fbq bootstrap so fbevents.js flushes the queued events
+          if (!window.fbq) {
+            var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+            if (!window._fbq) window._fbq = n;
+            n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+          }
           window.fbq('init', '2159844891459560');
           window.fbq('track', 'PageView');
         }
