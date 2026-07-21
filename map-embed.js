@@ -13,7 +13,7 @@ document.addEventListener('click', function (e) {
 
   var iframe = document.createElement('iframe');
   iframe.src = src;
-  iframe.title = 'Map showing Harmony and Health Microschool at 9670 Sunset Drive, Miami, FL 33173';
+  iframe.title = 'Map showing Harmony and Health Microschool at 9670 SW 72nd Street, Miami, FL 33173';
   iframe.loading = 'lazy';
   iframe.referrerPolicy = 'no-referrer-when-downgrade';
   iframe.setAttribute('allowfullscreen', '');
