@@ -440,6 +440,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 .footer-address a:hover { border-bottom-color: rgba(255,255,255,0.7); }
 .footer-map {
   margin-top: 14px;
+  margin-bottom: 10px; /* matches the 10px gap between the social buttons */
   max-width: 300px;
   border-radius: 12px;
   overflow: hidden;
