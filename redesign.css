@@ -98,14 +98,20 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   padding: 8px 18px !important;
 }
 
-/* ---- Nav: floating white pill, hairline + soft shadow ---- */
-.navbar, .navbar.scrolled { background: transparent !important; border: none !important; box-shadow: none !important; padding-top: 14px !important; }
-.nav-container {
+/* ---- Nav: solid full-width bar, flush to the top edge ---- */
+.navbar, .navbar.scrolled {
   background: #fff !important;
-  border: 1px solid var(--lav) !important;
-  border-radius: 9999px !important;
-  box-shadow: var(--soft-shadow) !important;
-  padding: 8px 14px 8px 22px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--lav) !important;
+  box-shadow: rgba(58,27,114,0.05) 0 2px 12px !important;
+  padding: 0 !important;
+}
+.nav-container {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 13px 24px !important;
 }
 .nav-logo-text { font-family: var(--serif) !important; color: var(--ink) !important; }
 .nav-links a { font-family: var(--grot) !important; color: var(--ink) !important; font-weight: 500 !important; letter-spacing: 0.01em; }
@@ -555,23 +561,23 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 420px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
-    padding: 15px 22px;
+    padding: 16px 22px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     background: var(--ev);
     color: #fff;
-    border-radius: 9999px;
+    border-radius: 0;
     font-family: 'DM Sans', system-ui, sans-serif;
     font-weight: 700;
     font-size: 1.02rem;
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    box-shadow: rgba(58,27,114,0.30) 0 6px 22px, rgba(0,0,0,0.12) 0 2px 8px;
+    box-shadow: 0 -3px 16px rgba(58,27,114,0.18);
     overflow: hidden;
   }
   .sticky-cta::after {
@@ -589,6 +595,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   .sticky-cta:hover, .sticky-cta:active { background: var(--ev-deep); color: #fff; }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
-  /* lift the Silktide cookie icon above the sticky CTA so they don't overlap */
-  #stcm-wrapper #stcm-icon { bottom: 78px !important; }
+  /* lift the Silktide cookie icon above the flush sticky CTA (accounts for the
+     iPhone home-indicator safe area, which makes the CTA taller) */
+  #stcm-wrapper #stcm-icon { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
 }
