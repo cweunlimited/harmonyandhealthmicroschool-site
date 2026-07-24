@@ -28,6 +28,17 @@
       setStatus('Please fill in your first and last name, email, and phone number.', true);
       return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {
+      setStatus('Please enter a valid email address, like name@example.com.', true);
+      form.email.focus();
+      return;
+    }
+    var phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+      setStatus('Please enter a valid phone number, including the area code.', true);
+      form.phone.focus();
+      return;
+    }
 
     var payload = {
       firstName: firstName,

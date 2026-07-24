@@ -85,8 +85,12 @@ export default async function handler(req, res) {
     if (!firstName || !lastName || !email || !phone) {
       return res.status(400).json({ error: 'Please fill in your first and last name, email, and phone number.' });
     }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {
       return res.status(400).json({ error: 'Please enter a valid email address.' });
+    }
+    var phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+      return res.status(400).json({ error: 'Please enter a valid phone number, including the area code.' });
     }
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not set.');
