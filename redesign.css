@@ -589,4 +589,6 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   .sticky-cta:hover, .sticky-cta:active { background: var(--ev-deep); color: #fff; }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
+  /* lift the Silktide cookie icon above the sticky CTA so they don't overlap */
+  #stcm-wrapper #stcm-icon { bottom: 78px !important; }
 }
