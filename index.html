@@ -731,19 +731,51 @@
         <p class="section-intro">We're accepting interest from families now. We will never enroll more than <strong>15 students</strong>, so we encourage you to reach out early. Fill out the form below and we'll be in touch as enrollment details become available.</p>
       </div>
 
-      <iframe id='JotFormIFrame-250545028762962'
-        title='Registration Form'
-        allowtransparency='true'
-        allow='geolocation; microphone; camera; fullscreen'
-        src='https://kaipodlearning.jotform.com/250545028762962?org_uuid=64f18b74-a7ca-4f9b-980c-816fb728a4be&source=website&microschool=Harmony+and+Health+Microschool'
-        frameborder='0'
-        style='min-width:100%;max-width:100%;height:585px;border:none;background:transparent;'
-        scrolling='no'>
-      </iframe>
-      <script src='https://kaipodlearning.jotform.com/s/umd/latest/for-form-embed-handler.js'></script>
-      <script>
-        window.jotformEmbedHandler("iframe[id='JotFormIFrame-250545028762962']", "https://kaipodlearning.jotform.com/");
-      </script>
+      <form id="leadForm" class="lead-form reveal" novalidate>
+        <div class="lf-row">
+          <div class="lf-field">
+            <label for="lf-first">First name<span class="lf-req">*</span></label>
+            <input id="lf-first" name="firstName" type="text" autocomplete="given-name" required>
+          </div>
+          <div class="lf-field">
+            <label for="lf-last">Last name</label>
+            <input id="lf-last" name="lastName" type="text" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="lf-row">
+          <div class="lf-field">
+            <label for="lf-email">Email<span class="lf-req">*</span></label>
+            <input id="lf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="lf-field">
+            <label for="lf-phone">Phone<span class="lf-req">*</span></label>
+            <input id="lf-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-grade">Child's grade (Fall 2026)</label>
+          <select id="lf-grade" name="grade">
+            <option value="">Select&hellip;</option>
+            <option>Kindergarten</option>
+            <option>1st grade</option>
+            <option>2nd grade</option>
+            <option>3rd grade</option>
+            <option>4th grade</option>
+            <option>5th grade</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="lf-field">
+          <label for="lf-message">Anything you'd like us to know?</label>
+          <textarea id="lf-message" name="message" rows="4"></textarea>
+        </div>
+        <!-- honeypot: hidden from people, catches bots -->
+        <input type="text" name="company" class="lf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="lf-actions">
+          <button type="submit" class="btn-primary" id="lf-submit">Request Information</button>
+        </div>
+        <p class="lf-status" id="lf-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
   </div><!-- /grad-pair -->
@@ -891,6 +923,6 @@
 
   </script>
   <script src="map-embed.js" defer></script>
-  <script src="lead-tracking.js" defer></script>
+  <script src="lead-form.js" defer></script>
 </body>
 </html>

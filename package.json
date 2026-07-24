@@ -1,0 +1,10 @@
+{
+  "name": "harmonyandhealthmicroschool-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Harmony and Health Microschool website with a lead-inquiry serverless function.",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}

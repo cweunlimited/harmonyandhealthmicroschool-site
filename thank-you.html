@@ -100,7 +100,15 @@
           window.fbq('init', '2159844891459560');
           window.fbq('track', 'PageView');
           // Conversion: this page is only reachable after a form submission.
-          window.fbq('track', 'Lead');
+          // Guard so a refresh of this page doesn't double-count the Lead.
+          try {
+            if (!sessionStorage.getItem('hhLeadFired')) {
+              window.fbq('track', 'Lead');
+              sessionStorage.setItem('hhLeadFired', '1');
+            }
+          } catch (e) {
+            window.fbq('track', 'Lead');
+          }
         }
       }
     ],

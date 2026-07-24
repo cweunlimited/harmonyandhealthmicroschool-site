@@ -477,6 +477,46 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 .footer-map-btn .fm-label { color: #fff; font-weight: 700; font-size: 0.92rem; }
 .footer-map-btn .fm-note { color: rgba(255,255,255,0.6); font-size: 0.72rem; }
 
+/* ---- Lead-inquiry form ---- */
+.lead-form { max-width: 560px; margin: 0 auto; text-align: left; }
+.lead-form .lf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .lead-form .lf-row { grid-template-columns: 1fr; } }
+.lead-form .lf-field { margin-bottom: 16px; }
+.lead-form label {
+  display: block;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+.lead-form .lf-req { color: var(--red); margin-left: 2px; }
+.lead-form input,
+.lead-form select,
+.lead-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--lav);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lead-form input:focus,
+.lead-form select:focus,
+.lead-form textarea:focus {
+  outline: none;
+  border-color: var(--ev);
+  box-shadow: 0 0 0 3px rgba(87, 48, 198, 0.12);
+}
+.lead-form textarea { resize: vertical; }
+.lead-form .lf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.lead-form .lf-actions { text-align: center; margin-top: 8px; }
+.lead-form .lf-status { text-align: center; margin-top: 14px; font-family: 'DM Sans', system-ui, sans-serif; }
+.lead-form .lf-status.lf-error { color: var(--red); font-weight: 500; }
+
 /* ---- "Request Information" nav button: endless white shine sweep ----
    A white streak (110% of the button's width) passes across once every
    5 seconds, forever. */
