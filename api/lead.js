@@ -82,8 +82,8 @@ export default async function handler(req, res) {
     var grade = String(body.grade || '').trim();
     var message = String(body.message || '').trim();
 
-    if (!firstName || !email || !phone) {
-      return res.status(400).json({ error: 'Please fill in your name, email, and phone number.' });
+    if (!firstName || !lastName || !email || !phone) {
+      return res.status(400).json({ error: 'Please fill in your first and last name, email, and phone number.' });
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       return res.status(400).json({ error: 'Please enter a valid email address.' });

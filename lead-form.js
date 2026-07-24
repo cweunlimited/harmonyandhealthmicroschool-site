@@ -20,17 +20,18 @@
     setStatus('');
 
     var firstName = form.firstName.value.trim();
+    var lastName = form.lastName.value.trim();
     var email = form.email.value.trim();
     var phone = form.phone.value.trim();
 
-    if (!firstName || !email || !phone) {
-      setStatus('Please fill in your name, email, and phone number.', true);
+    if (!firstName || !lastName || !email || !phone) {
+      setStatus('Please fill in your first and last name, email, and phone number.', true);
       return;
     }
 
     var payload = {
       firstName: firstName,
-      lastName: form.lastName.value.trim(),
+      lastName: lastName,
       email: email,
       phone: phone,
       grade: form.grade.value,

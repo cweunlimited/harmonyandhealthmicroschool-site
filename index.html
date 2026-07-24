@@ -738,8 +738,8 @@
             <input id="lf-first" name="firstName" type="text" autocomplete="given-name" required>
           </div>
           <div class="lf-field">
-            <label for="lf-last">Last name</label>
-            <input id="lf-last" name="lastName" type="text" autocomplete="family-name">
+            <label for="lf-last">Last name<span class="lf-req">*</span></label>
+            <input id="lf-last" name="lastName" type="text" autocomplete="family-name" required>
           </div>
         </div>
         <div class="lf-row">
@@ -753,7 +753,7 @@
           </div>
         </div>
         <div class="lf-field">
-          <label for="lf-grade">Child's grade (Fall 2026)</label>
+          <label for="lf-grade">Child's grade at enrollment</label>
           <select id="lf-grade" name="grade">
             <option value="">Select&hellip;</option>
             <option>Kindergarten</option>
