@@ -29,7 +29,12 @@
 (function () {
   'use strict';
 
-  var DEBUG = true;               // <-- flip to false after verifying
+  // Verified 2026-07: this embed never announces a submission. The only
+  // messages it sends are setHeight:* (resizing) and formSettled (finished
+  // loading), then it redirects the top window to the form owner's domain.
+  // Lead is therefore fired on /thank-you instead. This listener is kept as a
+  // no-op safety net in case a future embed version does announce submissions.
+  var DEBUG = false;              // set true to log raw JotForm payloads again
   var leadFired = false;          // fire at most once per page load
 
   // Substrings that indicate a completed submission. Matched case-insensitively
