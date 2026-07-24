@@ -544,3 +544,49 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   from { transform: translateX(-110%); }
   to   { transform: translateX(110%); }
 }
+
+/* ---- Mobile sticky "Request Information" CTA (same shine as the nav button) ----
+   Shown only once the nav collapses to the hamburger (<=1150px), so ad
+   traffic always has a visible, shining call to action on every page. */
+.sticky-cta { display: none; }
+@media (max-width: 1150px) {
+  .sticky-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 420px;
+    z-index: 1000;
+    padding: 15px 22px;
+    background: var(--ev);
+    color: #fff;
+    border-radius: 9999px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: rgba(58,27,114,0.30) 0 6px 22px, rgba(0,0,0,0.12) 0 2px 8px;
+    overflow: hidden;
+  }
+  .sticky-cta::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    transform: translateX(-110%);
+    animation: navCtaShine 5s linear infinite;
+  }
+  .sticky-cta:hover, .sticky-cta:active { background: var(--ev-deep); color: #fff; }
+  /* keep the footer's last line clear of the floating button */
+  .footer { padding-bottom: 96px; }
+}
