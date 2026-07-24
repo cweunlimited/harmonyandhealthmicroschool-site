@@ -301,6 +301,19 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    // Scroll-reveal: .section-header and .reveal start hidden, so they must be
+    // made visible or the page renders as blank space.
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.section-header, .reveal-stagger, .reveal')
+            .forEach(el => el.classList.add('visible'));
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('section').forEach(s => revealObserver.observe(s));
   </script>
   <script src="map-embed.js" defer></script>
 </body>
