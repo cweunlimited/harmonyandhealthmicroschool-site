@@ -105,15 +105,18 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   box-shadow: none !important;
   padding: 0 !important;
 }
-/* White "tab": flat + flush across the top edge, tapering inward toward the
-   bottom so the page peeks past the angled sides. Drawn on a ::before layer
-   so the nav's logo/menu are never clipped by the shape. */
+/* White "tab": flush across the top edge, inset a little on each side so the
+   page peeks past the sides, with rounded bottom corners. Drawn on a ::before
+   layer so the nav's logo/menu are never clipped by the shape. */
 .navbar::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
   background: #fff;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 26px 100%);
+  border-radius: 0 0 16px 16px;
   filter: drop-shadow(0 3px 7px rgba(58,27,114,0.12));
   z-index: 0;
 }
@@ -583,17 +586,15 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     background: var(--ev);
     color: #fff;
-    border-radius: 0;
     font-family: 'DM Sans', system-ui, sans-serif;
     font-weight: 700;
     font-size: 1.02rem;
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    border-radius: 0;
-    /* Tab shape: flat + flush across the bottom edge, tapering inward at the
-       top so the page peeks past the angled sides. */
-    clip-path: polygon(40px 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
+    /* Tab shape: flush across the bottom edge with smoothly rounded top
+       corners. The label sits centered, so there is no clipping risk. */
+    border-radius: 20px 20px 0 0;
     filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.25));
     overflow: hidden;
   }
