@@ -102,8 +102,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 .navbar, .navbar.scrolled {
   background: #fff !important;
   border: none !important;
-  border-bottom: 1px solid var(--lav) !important;
-  box-shadow: rgba(58,27,114,0.05) 0 2px 12px !important;
+  border-radius: 0 0 22px 22px !important;
+  box-shadow: rgba(58,27,114,0.08) 0 6px 20px !important;
   padding: 0 !important;
 }
 .nav-container {
@@ -577,7 +577,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    box-shadow: 0 -3px 16px rgba(58,27,114,0.18);
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -4px 20px rgba(58,27,114,0.22);
     overflow: hidden;
   }
   .sticky-cta::after {
