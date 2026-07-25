@@ -112,8 +112,6 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
    .sticky-cta (mobile CTA); bigger = rounder. This is just the base default. */
 :root{
   --sq-r: 60px;
-  /* 4-point sparkle (concave-sided star) used for the CTA glitter */
-  --star: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20fill='%23fff'%20d='M12%200C13%208%2016%2011%2024%2012C16%2013%2013%2016%2012%2024C11%2016%208%2013%200%2012C8%2011%2011%208%2012%200Z'/%3E%3C/svg%3E");
   --sq-tl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%200L100%20100L0%20100L0.15%2062.32L0.61%2050.36L1.38%2041.76L2.46%2034.89L3.86%2029.14L5.59%2024.21L7.67%2019.94L10.11%2016.2L12.94%2012.94L16.2%2010.11L19.94%207.67L24.21%205.59L29.14%203.86L34.89%202.46L41.76%201.38L50.36%200.61L62.32%200.15Z'/%3E%3C/svg%3E");
   --sq-tr: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%20100L0%20100L0%200L37.68%200.15L49.64%200.61L58.24%201.38L65.11%202.46L70.86%203.86L75.79%205.59L80.06%207.67L83.8%2010.11L87.06%2012.94L89.89%2016.2L92.33%2019.94L94.41%2024.21L96.14%2029.14L97.54%2034.89L98.62%2041.76L99.39%2050.36L99.85%2062.32Z'/%3E%3C/svg%3E");
   --sq-bl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M0%200L100%200L100%20100L62.32%2099.85L50.36%2099.39L41.76%2098.62L34.89%2097.54L29.14%2096.14L24.21%2094.41L19.94%2092.33L16.2%2089.89L12.94%2087.06L10.11%2083.8L7.67%2080.06L5.59%2075.79L3.86%2070.86L2.46%2065.11L1.38%2058.24L0.61%2049.64L0.15%2037.68Z'/%3E%3C/svg%3E");
@@ -615,20 +613,15 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   from { transform: translateX(-110%); }
   to   { transform: translateX(110%); }
 }
-/* Sticky-CTA glitter: each sparkle group fades quickly in and out with a couple
-   of flashes per cycle; the three groups run at different speeds/delays so the
-   overall twinkle looks scattered and organic. */
-@keyframes ctaSparkle {
-  0%   { opacity: 1; }
-  18%  { opacity: 0.45; }
-  38%  { opacity: 1; }
-  58%  { opacity: 0.55; }
-  80%  { opacity: 1; }
-  90%  { opacity: 0; }   /* brief full blink-off, staggered so groups never dim together */
-  100% { opacity: 1; }
+/* Sticky-CTA text gleam: sweep the purple streak across the label. Decreasing
+   position moves it left-to-right; wide margins leave a brief pause between
+   passes (background is off-screen, so the label reads solid white in between). */
+@keyframes ctaTextShine {
+  from { background-position: 130% 0; }
+  to   { background-position: -30% 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cta-glitter, .cta-glitter::before, .cta-glitter::after { animation: none; opacity: 0; }
+  .sticky-cta .cta-shine { animation: none; }  /* stays solid white, no sweep */
 }
 
 /* ---- Mobile sticky "Request Information" CTA (same shine as the nav button) ----
@@ -673,33 +666,19 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     -webkit-mask: var(--sq-mask-top-round);
             mask: var(--sq-mask-top-round);
   }
-  /* Glitter: scattered 4-point sparkle stars over the label, spread across three
-     layers (the span plus its ::before/::after). All three share one duration
-     with delays evenly split across it, and each layer only blinks fully off for
-     a brief instant, so the three dark moments never coincide - something is
-     always sparkling. Sits above the label, near the center, clear of corners. */
-  .cta-glitter { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-  .cta-glitter::before, .cta-glitter::after { content: ""; position: absolute; inset: 0; }
-  .cta-glitter, .cta-glitter::before, .cta-glitter::after {
+  /* Text gleam: a narrow purple streak (button color) sweeps across the white
+     label only - clipped to the glyphs via background-clip:text - so nothing
+     animates outside the letters and the button edges are never revealed. Purple
+     (not white) so it stays visible against the white type. */
+  .sticky-cta .cta-shine {
+    background-image: linear-gradient(110deg, #fff 0 47%, var(--ev) 50%, #fff 53% 100%);
+    background-size: 250% 100%;
     background-repeat: no-repeat;
-    animation: ctaSparkle 2.7s ease-in-out infinite;
-  }
-  .cta-glitter {
-    background-image: var(--star), var(--star), var(--star), var(--star), var(--star);
-    background-position: 34% 30%, 50% 70%, 63% 36%, 44% 76%, 28% 54%;
-    background-size: 12px 12px, 8px 8px, 13px 13px, 7px 7px, 9px 9px;
-  }
-  .cta-glitter::before {
-    background-image: var(--star), var(--star), var(--star), var(--star), var(--star);
-    background-position: 29% 40%, 57% 28%, 70% 60%, 40% 58%, 52% 46%;
-    background-size: 9px 9px, 13px 13px, 8px 8px, 7px 7px, 11px 11px;
-    animation-delay: 0.9s;
-  }
-  .cta-glitter::after {
-    background-image: var(--star), var(--star), var(--star), var(--star), var(--star), var(--star);
-    background-position: 33% 66%, 48% 34%, 61% 72%, 72% 44%, 24% 44%, 66% 56%;
-    background-size: 10px 10px, 8px 8px, 12px 12px, 7px 7px, 9px 9px, 8px 8px;
-    animation-delay: 1.8s;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;  /* fallback if background-clip:text is unsupported */
+    animation: ctaTextShine 3.6s linear infinite;
   }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
