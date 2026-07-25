@@ -105,6 +105,27 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   box-shadow: none !important;
   padding: 0 !important;
 }
+/* iOS-style squircle (superellipse) corner masks. Unit 100x100 tiles scaled to
+   --sq-r at use; each combines two rounded corners with straight fills so only
+   one edge is rounded and the opposite edge stays square + flush. Tweak --sq-r
+   to make both the nav and the mobile CTA more or less round. */
+:root{
+  --sq-r: 50px;
+  --sq-tl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%200L100%20100L0%20100L0.15%2062.32L0.61%2050.36L1.38%2041.76L2.46%2034.89L3.86%2029.14L5.59%2024.21L7.67%2019.94L10.11%2016.2L12.94%2012.94L16.2%2010.11L19.94%207.67L24.21%205.59L29.14%203.86L34.89%202.46L41.76%201.38L50.36%200.61L62.32%200.15Z'/%3E%3C/svg%3E");
+  --sq-tr: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%20100L0%20100L0%200L99.85%2062.32L99.39%2050.36L98.62%2041.76L97.54%2034.89L96.14%2029.14L94.41%2024.21L92.33%2019.94L89.89%2016.2L87.06%2012.94L83.8%2010.11L80.06%207.67L75.79%205.59L70.86%203.86L65.11%202.46L58.24%201.38L49.64%200.61L37.68%200.15Z'/%3E%3C/svg%3E");
+  --sq-bl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M0%200L100%200L100%20100L0.15%2037.68L0.61%2049.64L1.38%2058.24L2.46%2065.11L3.86%2070.86L5.59%2075.79L7.67%2080.06L10.11%2083.8L12.94%2087.06L16.2%2089.89L19.94%2092.33L24.21%2094.41L29.14%2096.14L34.89%2097.54L41.76%2098.62L50.36%2099.39L62.32%2099.85Z'/%3E%3C/svg%3E");
+  --sq-br: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M0%20100L0%200L100%200L99.85%2037.68L99.39%2049.64L98.62%2058.24L97.54%2065.11L96.14%2070.86L94.41%2075.79L92.33%2080.06L89.89%2083.8L87.06%2087.06L83.8%2089.89L80.06%2092.33L75.79%2094.41L70.86%2096.14L65.11%2097.54L58.24%2098.62L49.64%2099.39L37.68%2099.85Z'/%3E%3C/svg%3E");
+  --sq-mask-top:
+    var(--sq-tl) top left / var(--sq-r) var(--sq-r) no-repeat,
+    var(--sq-tr) top right / var(--sq-r) var(--sq-r) no-repeat,
+    linear-gradient(#fff,#fff) top center / calc(100% - 2 * var(--sq-r)) var(--sq-r) no-repeat,
+    linear-gradient(#fff,#fff) bottom left / 100% calc(100% - var(--sq-r)) no-repeat;
+  --sq-mask-bottom:
+    var(--sq-bl) bottom left / var(--sq-r) var(--sq-r) no-repeat,
+    var(--sq-br) bottom right / var(--sq-r) var(--sq-r) no-repeat,
+    linear-gradient(#fff,#fff) bottom center / calc(100% - 2 * var(--sq-r)) var(--sq-r) no-repeat,
+    linear-gradient(#fff,#fff) top left / 100% calc(100% - var(--sq-r)) no-repeat;
+}
 /* White bar: full width, flush to the top and both side edges, with rounded
    bottom corners. Drawn on a ::before layer so the logo/menu are never clipped. */
 .navbar::before {
@@ -115,6 +136,18 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   border-radius: 0 0 80px 80px;
   filter: drop-shadow(0 3px 7px rgba(58,27,114,0.12));
   z-index: 0;
+}
+/* On phones, swap the circular bottom corners for true iOS squircles so the
+   bar's curve matches the device's screen corners. (The mask clips the drop-
+   shadow, so the subtle nav shadow drops on mobile; the hero below gives
+   contrast. Fallback on browsers without mask support: square bottom corners.) */
+@media (max-width: 1150px){
+  .navbar::before{
+    border-radius: 0;
+    filter: none;
+    -webkit-mask: var(--sq-mask-bottom);
+            mask: var(--sq-mask-bottom);
+  }
 }
 .nav-container {
   position: relative;
@@ -147,11 +180,11 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 }
 .btn-primary { padding: 14px 32px !important; }
 .btn-primary:hover { background: var(--ev-deep) !important; }
-/* The "Request Information" CTA keeps its violet on hover/press/focus - no color
-   shift. High specificity + !important overrides style.css's nav-cta:hover and
-   avoids the mobile "sticky :hover" that left it darkened after a tap. */
-.nav-links a.nav-cta:hover, .nav-links a.nav-cta:active, .nav-links a.nav-cta:focus,
-.sticky-cta:hover, .sticky-cta:active, .sticky-cta:focus {
+/* The nav "Request Information" button keeps its violet on hover/press/focus -
+   no color shift. High specificity + !important overrides style.css's
+   nav-cta:hover. (The sticky CTA's body is a masked ::before, so it has no
+   hover color to change.) */
+.nav-links a.nav-cta:hover, .nav-links a.nav-cta:active, .nav-links a.nav-cta:focus {
   background: var(--ev) !important;
 }
 .btn-secondary-dark, .btn-secondary {
@@ -569,14 +602,24 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   from { transform: translateX(-110%); }
   to   { transform: translateX(110%); }
 }
+/* Sticky-CTA shine sweeps left-to-right via background-position (the button is a
+   masked pseudo, so a transform sweep can't be used). Decreasing position moves
+   the highlight rightward; wide margins keep it fully off-screen between passes. */
+@keyframes navCtaShineBg {
+  from { background-position: 120% 0; }
+  to   { background-position: -20% 0; }
+}
 
 /* ---- Mobile sticky "Request Information" CTA (same shine as the nav button) ----
    Shown only once the nav collapses to the hamburger (<=1150px), so ad
    traffic always has a visible, shining call to action on every page. */
 .sticky-cta { display: none; }
 @media (max-width: 1150px) {
-  /* Full-width bar, flush to the bottom and both side edges, with rounded top
-     corners. The label is centered and the shine is clipped by overflow. */
+  /* Full-width bar, flush to the bottom and both side edges. The violet body is
+     drawn on ::before and masked to an iOS squircle (rounded top corners) so its
+     curve matches the phone screen; the parent's drop-shadow (no mask on the
+     parent) hugs that squircle, and the ::after shine is clipped to the same
+     shape. Fallback without mask support: a plain rectangular button. */
   .sticky-cta {
     display: flex;
     align-items: center;
@@ -589,7 +632,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     z-index: 1000;
     padding: 16px 22px;
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    background: var(--ev);
+    background: transparent;
     color: #fff;
     font-family: 'DM Sans', system-ui, sans-serif;
     font-weight: 700;
@@ -597,22 +640,29 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    border-radius: 80px 80px 0 0;
     filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.22));
-    overflow: hidden;
   }
-  /* Shine: white highlight swept left-to-right across the button */
+  .sticky-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ev);
+    -webkit-mask: var(--sq-mask-top);
+            mask: var(--sq-mask-top);
+  }
+  /* Shine: white highlight swept left-to-right, clipped to the same squircle */
   .sticky-cta::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 110%;
-    height: 100%;
+    inset: 0;
     pointer-events: none;
-    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
-    transform: translateX(-110%);
-    animation: navCtaShine 5s linear infinite;
+    background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.5) 50%, transparent 58%);
+    background-size: 250% 100%;
+    background-repeat: no-repeat;
+    -webkit-mask: var(--sq-mask-top);
+            mask: var(--sq-mask-top);
+    animation: navCtaShineBg 5s linear infinite;
   }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
