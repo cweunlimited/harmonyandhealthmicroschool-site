@@ -105,18 +105,14 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   box-shadow: none !important;
   padding: 0 !important;
 }
-/* White "tab": flush across the top edge, inset a little on each side so the
-   page peeks past the sides, with rounded bottom corners. Drawn on a ::before
-   layer so the nav's logo/menu are never clipped by the shape. */
+/* White bar: full width, flush to the top and both side edges, with rounded
+   bottom corners. Drawn on a ::before layer so the logo/menu are never clipped. */
 .navbar::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 14px;
-  right: 14px;
-  bottom: 0;
+  inset: 0;
   background: #fff;
-  border-radius: 0 0 16px 16px;
+  border-radius: 0 0 22px 22px;
   filter: drop-shadow(0 3px 7px rgba(58,27,114,0.12));
   z-index: 0;
 }
@@ -579,19 +575,17 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
    traffic always has a visible, shining call to action on every page. */
 .sticky-cta { display: none; }
 @media (max-width: 1150px) {
-  /* Chrome-tab silhouette: the body is inset from the screen edges so the page
-     peeks past both sides, with rounded top corners; concave "shoulders" (the
-     ::before layer) flare the tab out to the bottom edge like a browser tab.
-     The label is centered, so nothing gets clipped. */
+  /* Full-width bar, flush to the bottom and both side edges, with rounded top
+     corners. The label is centered and the shine is clipped by overflow. */
   .sticky-cta {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
     bottom: 0;
-    left: 28px;
-    right: 28px;
-    width: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
     padding: 16px 22px;
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
@@ -603,51 +597,26 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    border-radius: 18px 18px 0 0;
-    /* drop-shadow (not box-shadow) so the lift hugs the full tab silhouette,
-       shoulders included */
+    border-radius: 22px 22px 0 0;
     filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.22));
+    overflow: hidden;
   }
-  /* Shoulders: a full-width strip behind the body (z-index:-1) that flares the
-     tab out to each screen edge along the bottom. The fill sits AGAINST the
-     button (tangent to its side and the bottom edge) and curves out to the
-     corner, so the tab looks like it grows out of the bottom of the page. */
-  .sticky-cta::before {
-    content: "";
-    position: absolute;
-    left: -28px;
-    right: -28px;
-    bottom: 0;
-    height: 28px;
-    z-index: -1;
-    background:
-      radial-gradient(circle 28px at top left,  transparent 27.5px, var(--ev) 28px) left top / 28px 28px no-repeat,
-      radial-gradient(circle 28px at top right, transparent 27.5px, var(--ev) 28px) right top / 28px 28px no-repeat;
-  }
-  /* Shine: a diagonal highlight swept across via background-position, clipped to
-     the body's rounded top corners by the pseudo-element's own border-radius. */
+  /* Shine: white highlight swept left-to-right across the button */
   .sticky-cta::after {
     content: "";
     position: absolute;
-    inset: 0;
-    border-radius: 18px 18px 0 0;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 100%;
     pointer-events: none;
-    background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.5) 50%, transparent 58%);
-    background-size: 250% 100%;
-    background-repeat: no-repeat;
-    animation: navCtaShineBg 5s linear infinite;
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    transform: translateX(-110%);
+    animation: navCtaShine 5s linear infinite;
   }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
   /* lift the Silktide cookie icon above the flush sticky CTA (accounts for the
      iPhone home-indicator safe area, which makes the CTA taller) */
   #stcm-wrapper #stcm-icon { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
-}
-/* Sweep the sticky-CTA highlight left-to-right via background-position (its
-   shape is drawn with pseudo-layers, so a transform-based sweep can't be used
-   here). Decreasing position moves the band rightward; the wide margins keep it
-   fully off-screen between passes. */
-@keyframes navCtaShineBg {
-  from { background-position: 120% 0; }
-  to   { background-position: -20% 0; }
 }
