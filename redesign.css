@@ -582,8 +582,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     justify-content: center;
     position: fixed;
     bottom: 0;
-    left: 18px;
-    right: 18px;
+    left: 28px;
+    right: 28px;
     width: auto;
     z-index: 1000;
     padding: 16px 22px;
@@ -607,14 +607,14 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   .sticky-cta::before {
     content: "";
     position: absolute;
-    left: -18px;
-    right: -18px;
+    left: -28px;
+    right: -28px;
     bottom: 0;
-    height: 18px;
+    height: 28px;
     z-index: -1;
     background:
-      radial-gradient(circle 18px at top right, transparent 17.5px, var(--ev) 18px) left top / 18px 18px no-repeat,
-      radial-gradient(circle 18px at top left,  transparent 17.5px, var(--ev) 18px) right top / 18px 18px no-repeat;
+      radial-gradient(circle 28px at top right, transparent 27.5px, var(--ev) 28px) left top / 28px 28px no-repeat,
+      radial-gradient(circle 28px at top left,  transparent 27.5px, var(--ev) 28px) right top / 28px 28px no-repeat;
   }
   /* Shine: a diagonal highlight swept across via background-position, clipped to
      the body's rounded top corners by the pseudo-element's own border-radius. */
