@@ -150,7 +150,14 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   box-shadow: var(--cta-shadow) !important;
 }
 .btn-primary { padding: 14px 32px !important; }
-.btn-primary:hover, .nav-cta:hover { background: var(--ev-deep) !important; }
+.btn-primary:hover { background: var(--ev-deep) !important; }
+/* The "Request Information" CTA keeps its violet on hover/press/focus - no color
+   shift. High specificity + !important overrides style.css's nav-cta:hover and
+   avoids the mobile "sticky :hover" that left it darkened after a tap. */
+.nav-links a.nav-cta:hover, .nav-links a.nav-cta:active, .nav-links a.nav-cta:focus,
+.sticky-cta:hover, .sticky-cta:active, .sticky-cta:focus {
+  background: var(--ev) !important;
+}
 .btn-secondary-dark, .btn-secondary {
   background: transparent !important;
   color: var(--ev) !important;
@@ -601,9 +608,10 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
        shoulders included */
     filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.22));
   }
-  /* Concave shoulders: a full-width strip behind the body (z-index:-1) that
-     flares the tab out to each screen edge along the bottom. Each end is a
-     scooped quarter drawn with a radial gradient. */
+  /* Shoulders: a full-width strip behind the body (z-index:-1) that flares the
+     tab out to each screen edge along the bottom. The fill sits AGAINST the
+     button (tangent to its side and the bottom edge) and curves out to the
+     corner, so the tab looks like it grows out of the bottom of the page. */
   .sticky-cta::before {
     content: "";
     position: absolute;
@@ -613,8 +621,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     height: 28px;
     z-index: -1;
     background:
-      radial-gradient(circle 28px at top right, transparent 27.5px, var(--ev) 28px) left top / 28px 28px no-repeat,
-      radial-gradient(circle 28px at top left,  transparent 27.5px, var(--ev) 28px) right top / 28px 28px no-repeat;
+      radial-gradient(circle 28px at top left,  transparent 27.5px, var(--ev) 28px) left top / 28px 28px no-repeat,
+      radial-gradient(circle 28px at top right, transparent 27.5px, var(--ev) 28px) right top / 28px 28px no-repeat;
   }
   /* Shine: a diagonal highlight swept across via background-position, clipped to
      the body's rounded top corners by the pseudo-element's own border-radius. */
@@ -626,18 +634,20 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     pointer-events: none;
     background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.5) 50%, transparent 58%);
     background-size: 250% 100%;
+    background-repeat: no-repeat;
     animation: navCtaShineBg 5s linear infinite;
   }
-  .sticky-cta:hover, .sticky-cta:active { background: var(--ev-deep); color: #fff; }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
   /* lift the Silktide cookie icon above the flush sticky CTA (accounts for the
      iPhone home-indicator safe area, which makes the CTA taller) */
   #stcm-wrapper #stcm-icon { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
 }
-/* Sweep the sticky-CTA highlight across via background-position (its shape is
-   drawn with pseudo-layers, so a transform-based sweep can't be used here) */
+/* Sweep the sticky-CTA highlight left-to-right via background-position (its
+   shape is drawn with pseudo-layers, so a transform-based sweep can't be used
+   here). Decreasing position moves the band rightward; the wide margins keep it
+   fully off-screen between passes. */
 @keyframes navCtaShineBg {
-  from { background-position: -40% 0; }
-  to   { background-position: 180% 0; }
+  from { background-position: 120% 0; }
+  to   { background-position: -20% 0; }
 }
