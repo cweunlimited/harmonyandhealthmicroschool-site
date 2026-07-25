@@ -613,12 +613,11 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   from { transform: translateX(-110%); }
   to   { transform: translateX(110%); }
 }
-/* Sticky-CTA text gleam: sweep the purple streak across the label. Decreasing
-   position moves it left-to-right; wide margins leave a brief pause between
-   passes (background is off-screen, so the label reads solid white in between). */
+/* Sticky-CTA text gleam. Both ends rest on the white base, so every loop is
+   identical (no every-other-pass glitch), matching the Wolf Wellness eyebrows. */
 @keyframes ctaTextShine {
-  from { background-position: 130% 0; }
-  to   { background-position: -30% 0; }
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sticky-cta .cta-shine { animation: none; }  /* stays solid white, no sweep */
@@ -666,19 +665,23 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     -webkit-mask: var(--sq-mask-top-round);
             mask: var(--sq-mask-top-round);
   }
-  /* Text gleam: a narrow purple streak (button color) sweeps across the white
-     label only - clipped to the glyphs via background-clip:text - so nothing
-     animates outside the letters and the button edges are never revealed. Purple
-     (not white) so it stays visible against the white type. */
+  /* Text gleam - same recipe as the Wolf Wellness .eyebrow titles, with a purple
+     streak (button color) instead of gold and a white base instead of dark green.
+     Clipped to the glyphs via background-clip:text, so nothing animates outside
+     the letters and the button edges are never revealed. */
   .sticky-cta .cta-shine {
-    background-image: linear-gradient(110deg, #fff 0 47%, var(--ev) 50%, #fff 53% 100%);
-    background-size: 250% 100%;
+    display: inline-block;
+    color: #fff;  /* fallback if background-clip:text is unsupported */
+    background-image: linear-gradient(100deg,
+      #fff 0%, #fff 42%,
+      var(--ev) 50%,
+      #fff 58%, #fff 100%);
+    background-size: 280% 100%;
     background-repeat: no-repeat;
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: #fff;  /* fallback if background-clip:text is unsupported */
-    animation: ctaTextShine 3.6s linear infinite;
+    animation: ctaTextShine 6s linear infinite;
   }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
