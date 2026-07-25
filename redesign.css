@@ -613,12 +613,16 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   from { transform: translateX(-110%); }
   to   { transform: translateX(110%); }
 }
-/* Sticky-CTA shine sweeps left-to-right via background-position (the button is a
-   masked pseudo, so a transform sweep can't be used). Decreasing position moves
-   the highlight rightward; wide margins keep it fully off-screen between passes. */
-@keyframes navCtaShineBg {
-  from { background-position: 120% 0; }
-  to   { background-position: -20% 0; }
+/* Sticky-CTA glimmer: a white glow that hugs the label and twinkles in place.
+   Irregular peaks (35% / 75%) give a sparkle rather than a smooth pulse. */
+@keyframes ctaGlimmer {
+  0%, 100% { text-shadow: 0 0 2px rgba(255,255,255,0.55), 0 0 6px rgba(255,255,255,0.32), 0 0 13px rgba(255,255,255,0.16); }
+  35%      { text-shadow: 0 0 3px rgba(255,255,255,0.95), 0 0 9px rgba(255,255,255,0.60), 0 0 18px rgba(255,255,255,0.34); }
+  55%      { text-shadow: 0 0 2px rgba(255,255,255,0.70), 0 0 7px rgba(255,255,255,0.40), 0 0 15px rgba(255,255,255,0.22); }
+  75%      { text-shadow: 0 0 4px rgba(255,255,255,1.00), 0 0 11px rgba(255,255,255,0.68), 0 0 20px rgba(255,255,255,0.40); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sticky-cta { animation: none; }  /* keep the steady base glow, drop the twinkle */
 }
 
 /* ---- Mobile sticky "Request Information" CTA (same shine as the nav button) ----
@@ -653,6 +657,10 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     text-decoration: none;
     text-align: center;
     filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.22));
+    /* Constant white glimmer hugging the label. No sweep, so the pill illusion
+       running along the phone's bottom edge stays intact. */
+    text-shadow: 0 0 3px rgba(255,255,255,0.6), 0 0 8px rgba(255,255,255,0.35);
+    animation: ctaGlimmer 2.6s ease-in-out infinite;
   }
   .sticky-cta::before {
     content: "";
@@ -662,19 +670,6 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     background: var(--ev);
     -webkit-mask: var(--sq-mask-top-round);
             mask: var(--sq-mask-top-round);
-  }
-  /* Shine: white highlight swept left-to-right, clipped to the same squircle */
-  .sticky-cta::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.5) 50%, transparent 58%);
-    background-size: 250% 100%;
-    background-repeat: no-repeat;
-    -webkit-mask: var(--sq-mask-top-round);
-            mask: var(--sq-mask-top-round);
-    animation: navCtaShineBg 5s linear infinite;
   }
   /* keep the footer's last line clear of the floating button */
   .footer { padding-bottom: 96px; }
