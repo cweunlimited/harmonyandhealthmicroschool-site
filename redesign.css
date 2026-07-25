@@ -100,18 +100,31 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 
 /* ---- Nav: solid full-width bar, flush to the top edge ---- */
 .navbar, .navbar.scrolled {
-  background: #fff !important;
+  background: transparent !important;
   border: none !important;
-  border-radius: 0 0 22px 22px !important;
-  box-shadow: rgba(58,27,114,0.08) 0 6px 20px !important;
+  box-shadow: none !important;
   padding: 0 !important;
 }
+/* White "tab": flat + flush across the top edge, tapering inward toward the
+   bottom so the page peeks past the angled sides. Drawn on a ::before layer
+   so the nav's logo/menu are never clipped by the shape. */
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 26px 100%);
+  filter: drop-shadow(0 3px 7px rgba(58,27,114,0.12));
+  z-index: 0;
+}
 .nav-container {
+  position: relative;
+  z-index: 1;
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 13px 24px !important;
+  padding: 13px 26px !important;
 }
 .nav-logo-text { font-family: var(--serif) !important; color: var(--ink) !important; }
 .nav-links a { font-family: var(--grot) !important; color: var(--ink) !important; font-weight: 500 !important; letter-spacing: 0.01em; }
@@ -577,8 +590,11 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     letter-spacing: 0.03em;
     text-decoration: none;
     text-align: center;
-    border-radius: 22px 22px 0 0;
-    box-shadow: 0 -4px 20px rgba(58,27,114,0.22);
+    border-radius: 0;
+    /* Tab shape: flat + flush across the bottom edge, tapering inward at the
+       top so the page peeks past the angled sides. */
+    clip-path: polygon(40px 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
+    filter: drop-shadow(0 -3px 9px rgba(58,27,114,0.25));
     overflow: hidden;
   }
   .sticky-cta::after {
