@@ -650,8 +650,8 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px));
     background: transparent;
     color: #fff;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: var(--serif);
+    font-weight: 500;   /* lightest self-hosted Source Serif 4 weight - reads regular, not bold */
     font-size: 1.5rem;
     letter-spacing: 0.03em;
     text-decoration: none;
