@@ -107,10 +107,11 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 }
 /* iOS-style squircle (superellipse) corner masks. Unit 100x100 tiles scaled to
    --sq-r at use; each combines two rounded corners with straight fills so only
-   one edge is rounded and the opposite edge stays square + flush. Tweak --sq-r
-   to make both the nav and the mobile CTA more or less round. */
+   one edge is rounded and the opposite edge stays square + flush. Roundness is
+   set per element by overriding --sq-r: on .navbar::before (nav) and on
+   .sticky-cta (mobile CTA); bigger = rounder. This is just the base default. */
 :root{
-  --sq-r: 50px;
+  --sq-r: 60px;
   --sq-tl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%200L100%20100L0%20100L0.15%2062.32L0.61%2050.36L1.38%2041.76L2.46%2034.89L3.86%2029.14L5.59%2024.21L7.67%2019.94L10.11%2016.2L12.94%2012.94L16.2%2010.11L19.94%207.67L24.21%205.59L29.14%203.86L34.89%202.46L41.76%201.38L50.36%200.61L62.32%200.15Z'/%3E%3C/svg%3E");
   --sq-tr: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%20100L0%20100L0%200L37.68%200.15L49.64%200.61L58.24%201.38L65.11%202.46L70.86%203.86L75.79%205.59L80.06%207.67L83.8%2010.11L87.06%2012.94L89.89%2016.2L92.33%2019.94L94.41%2024.21L96.14%2029.14L97.54%2034.89L98.62%2041.76L99.39%2050.36L99.85%2062.32Z'/%3E%3C/svg%3E");
   --sq-bl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M0%200L100%200L100%20100L62.32%2099.85L50.36%2099.39L41.76%2098.62L34.89%2097.54L29.14%2096.14L24.21%2094.41L19.94%2092.33L16.2%2089.89L12.94%2087.06L10.11%2083.8L7.67%2080.06L5.59%2075.79L3.86%2070.86L2.46%2065.11L1.38%2058.24L0.61%2049.64L0.15%2037.68Z'/%3E%3C/svg%3E");
@@ -143,6 +144,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
    contrast. Fallback on browsers without mask support: square bottom corners.) */
 @media (max-width: 1150px){
   .navbar::before{
+    --sq-r: 60px;   /* nav is ~62px tall, so this is near its max roundness */
     border-radius: 0;
     filter: none;
     -webkit-mask: var(--sq-mask-bottom);
@@ -621,6 +623,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
      parent) hugs that squircle, and the ::after shine is clipped to the same
      shape. Fallback without mask support: a plain rectangular button. */
   .sticky-cta {
+    --sq-r: 74px;   /* CTA is taller, so it can take a rounder corner */
     display: flex;
     align-items: center;
     justify-content: center;
