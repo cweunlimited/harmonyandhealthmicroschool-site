@@ -674,7 +674,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     color: #fff;  /* fallback if background-clip:text is unsupported */
     background-image: linear-gradient(100deg,
       #fff 0%, #fff 42%,
-      var(--ev) 50%,
+      #ab98e3 50%,   /* light lavender - lighter than the button so letters stay legible on the pass */
       #fff 58%, #fff 100%);
     background-size: 280% 100%;
     background-repeat: no-repeat;
