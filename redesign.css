@@ -126,10 +126,10 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     var(--sq-br) bottom right / var(--sq-r) var(--sq-r) no-repeat,
     linear-gradient(#fff,#fff) bottom center / calc(100% - 2 * var(--sq-r)) var(--sq-r) no-repeat,
     linear-gradient(#fff,#fff) top left / 100% calc(100% - var(--sq-r)) no-repeat;
-  /* Rounder top corners (superellipse n=3, closer to a circle than the n=5
-     nav curve) - used only by the mobile CTA. */
-  --sqr-tl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%200L100%20100L0%20100L0.25%2080.34L1.02%2068.87L2.28%2059.39L4.06%2051.09L6.35%2043.68L9.14%2037L12.45%2030.97L16.28%2025.52L20.63%2020.63L25.52%2016.28L30.97%2012.45L37%209.14L43.68%206.35L51.09%204.06L59.39%202.28L68.87%201.02L80.34%200.25Z'/%3E%3C/svg%3E");
-  --sqr-tr: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%20100L0%20100L0%200L19.66%200.25L31.13%201.02L40.61%202.28L48.91%204.06L56.32%206.35L63%209.14L69.03%2012.45L74.48%2016.28L79.37%2020.63L83.72%2025.52L87.55%2030.97L90.86%2037L93.65%2043.68L95.94%2051.09L97.72%2059.39L98.98%2068.87L99.75%2080.34Z'/%3E%3C/svg%3E");
+  /* Rounder top corners (superellipse n=2 = a true circular corner, the
+     roundest possible) - used only by the mobile CTA. */
+  --sqr-tl: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%200L100%20100L0%20100L0.38%2091.28L1.52%2082.64L3.41%2074.12L6.03%2065.8L9.37%2057.74L13.4%2050L18.08%2042.64L23.4%2035.72L29.29%2029.29L35.72%2023.4L42.64%2018.08L50%2013.4L57.74%209.37L65.8%206.03L74.12%203.41L82.64%201.52L91.28%200.38Z'/%3E%3C/svg%3E");
+  --sqr-tr: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23fff'%20d='M100%20100L0%20100L0%200L8.72%200.38L17.36%201.52L25.88%203.41L34.2%206.03L42.26%209.37L50%2013.4L57.36%2018.08L64.28%2023.4L70.71%2029.29L76.6%2035.72L81.92%2042.64L86.6%2050L90.63%2057.74L93.97%2065.8L96.59%2074.12L98.48%2082.64L99.62%2091.28Z'/%3E%3C/svg%3E");
   --sq-mask-top-round:
     var(--sqr-tl) top left / var(--sq-r) var(--sq-r) no-repeat,
     var(--sqr-tr) top right / var(--sq-r) var(--sq-r) no-repeat,
