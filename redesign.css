@@ -644,12 +644,14 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
     right: 0;
     width: 100%;
     z-index: 1000;
-    padding: 16px 22px;
-    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    /* trimmed vertical padding (was 16px) so the larger label keeps the button
+       at its previous height and just fills more of it */
+    padding: 11px 22px;
+    padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px));
     background: transparent;
     color: #fff;
     font-family: 'DM Sans', system-ui, sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.5rem;
     letter-spacing: 0.03em;
     text-decoration: none;
