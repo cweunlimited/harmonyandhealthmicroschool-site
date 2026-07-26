@@ -14,9 +14,11 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = 'Harmony and Health Microschool <info@harmonyandhealthmicroschool.com>';
+// Personal-looking sender for the family welcome note. Reading as a person
+// rather than a brand keeps Gmail from filing it under the Promotions tab.
+const FROM_WELCOME = 'Chris and Monika at Harmony and Health <info@harmonyandhealthmicroschool.com>';
 const TEAM = 'info@harmonyandhealthmicroschool.com';
 const BOOKING = 'https://calendar.app.google/SV24SpsTbCqi8ncg9';
-const LOGO = 'https://harmonyandhealthmicroschool.com/logo-main.png';
 
 function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -24,23 +26,44 @@ function esc(s) {
   });
 }
 
+/* The family welcome note. Deliberately plain and personal: no logo image, no
+ * template container, one plain link, conversational copy, and a matching
+ * plain-text part (see welcomeText). This keeps Gmail from tagging it
+ * "Promotions" and lands it in the Primary inbox, where a note from a real
+ * person belongs. */
 function welcomeEmail(firstName) {
   return (
-    '<div style="font-family:Arial,Helvetica,sans-serif;color:#333;max-width:600px;margin:0 auto;line-height:1.65;font-size:16px;">' +
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#222;">' +
       '<p>Hi ' + firstName + ',</p>' +
-      "<p>Thank you so much for your interest in Harmony and Health Microschool! Our names are Chris and Monika, and we're so excited to connect with you.</p>" +
-      '<p>As educators and parents, we believe that education should be built around the whole child. Instead of asking kids to sit still at a desk all day, our K-5 microschool intentionally integrates music, mindful movement, and outdoor play right into our daily curriculum. Because we cap our enrollment at just 15 students, we actually have the time to help your child process big emotions, regulate their nervous system, and truly rediscover the joy of learning.</p>' +
-      "<p>I'd love to schedule a quick, casual phone call just to learn more about your family, your student, and what you are looking for.</p>" +
-      '<p>You can grab a time that works best for you right here: <a href="' + BOOKING + '" style="color:#5730C6;">' + BOOKING + '</a></p>' +
-      '<p>You can also reach us directly via email at: <a href="mailto:info@harmonyandhealthmicroschool.com" style="color:#5730C6;">info@harmonyandhealthmicroschool.com</a><br>' +
-      'Or give us a call at: (786) 505-0768</p>' +
-      "<p>Looking forward to hearing your family's story!</p>" +
-      '<p>Warmly,<br>Chris and Monika<br>Founders, Harmony and Health Microschool</p>' +
-      '<p style="text-align:center;margin-top:32px;">' +
-        '<img src="' + LOGO + '" alt="Harmony and Health Microschool" width="200" style="max-width:200px;height:auto;">' +
-      '</p>' +
+      "<p>Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health together, so I wanted to say hello personally.</p>" +
+      "<p>We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:</p>" +
+      '<p><a href="' + BOOKING + '">' + BOOKING + '</a></p>' +
+      "<p>Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.</p>" +
+      "<p>We keep the school small on purpose, just fifteen students, so we have the time to really know every child. We can't wait to learn your family's story.</p>" +
+      '<p>Warmly,<br>Chris and Monika<br>Harmony and Health Microschool<br>(786) 505-0768</p>' +
     '</div>'
   );
+}
+
+function welcomeText(firstName) {
+  return [
+    'Hi ' + firstName + ',',
+    '',
+    "Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health together, so I wanted to say hello personally.",
+    '',
+    "We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:",
+    '',
+    BOOKING,
+    '',
+    "Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.",
+    '',
+    "We keep the school small on purpose, just fifteen students, so we have the time to really know every child. We can't wait to learn your family's story.",
+    '',
+    'Warmly,',
+    'Chris and Monika',
+    'Harmony and Health Microschool',
+    '(786) 505-0768'
+  ].join('\n');
 }
 
 function notifyEmail(d) {
@@ -99,10 +122,11 @@ export default async function handler(req, res) {
 
     await Promise.all([
       resend.emails.send({
-        from: FROM,
+        from: FROM_WELCOME,
         to: email,
         replyTo: TEAM,
-        subject: 'Hello from Harmony and Health Microschool!',
+        subject: 'Thanks for reaching out, ' + firstName,
+        text: welcomeText(firstName),
         html: welcomeEmail(esc(firstName))
       }),
       resend.emails.send({
