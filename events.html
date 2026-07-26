@@ -86,6 +86,18 @@
     --iconBackgroundColor: #FFFFFF;
   }
   </style>
+  <!-- Meta Pixel base. Queues init + PageView but sends nothing until fbevents.js
+       loads, which Silktide does only after Marketing consent (see "scripts" in
+       the config below). Result: the Pixel fires on every consented page load -
+       returning visitors included - without depending on the consent callback
+       re-running on load. -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
+    fbq('init','2159844891459560');
+    fbq('track','PageView');
+  </script>
   <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js" integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq" crossorigin="anonymous"></script>
   <script>
   window.silktideConsentManager.init({
@@ -145,14 +157,9 @@
           }
         ],
         onAccept: function() {
-          // Meta Pixel (2159844891459560) - standard fbq bootstrap so fbevents.js flushes the queued events
-          if (!window.fbq) {
-            var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-            if (!window._fbq) window._fbq = n;
-            n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
-          }
-          window.fbq('init', '2159844891459560');
-          window.fbq('track', 'PageView');
+          // The "scripts" entry above loads fbevents.js on Marketing consent,
+          // which flushes the init + PageView already queued by the Meta Pixel
+          // base snippet in <head>. Nothing else needed here.
         }
       }
     ],
