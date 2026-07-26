@@ -180,17 +180,23 @@
     --iconBackgroundColor: #FFFFFF;
   }
   </style>
-  <!-- Meta Pixel base. Queues init + PageView but sends nothing until fbevents.js
-       loads, which Silktide does only after Marketing consent (see "scripts" in
-       the config below). Result: the Pixel fires on every consented page load -
-       returning visitors included - without depending on the consent callback
-       re-running on load. -->
+  <!-- Meta Pixel base. Queues init + PageView; fbevents.js (which flushes the
+       queue and does the real tracking) is loaded ONLY when Marketing consent is
+       present - read from stored consent on load below, or the moment it's
+       granted via the banner's onAccept. No script/cookie/network call without
+       consent. We load it ourselves so it works on return visits (Silktide does
+       not reliably re-inject it when consent is already stored). -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
     fbq('init','2159844891459560');
     fbq('track','PageView');
+    window.hhLoadPixel=function(){if(window._hhPixelLoaded)return;window._hhPixelLoaded=true;
+      var s=document.createElement('script');s.async=true;
+      s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s);};
+    try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+      if(k&&k.indexOf('consent.marketing')!==-1&&localStorage.getItem(k)==='true'){window.hhLoadPixel();break;}}}catch(e){}
   </script>
   <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js" integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq" crossorigin="anonymous"></script>
   <script>
@@ -244,16 +250,11 @@
           "ad_user_data",
           "ad_personalization"
         ],
-        scripts: [
-          {
-            url: "https://connect.facebook.net/en_US/fbevents.js",
-            load: "async"
-          }
-        ],
         onAccept: function() {
-          // The "scripts" entry above loads fbevents.js on Marketing consent,
-          // which flushes the init + PageView already queued by the Meta Pixel
-          // base snippet in <head>. Nothing else needed here.
+          // Marketing just granted - load the Pixel now (it flushes the queued
+          // init + PageView). Return visits load it via the on-load consent check
+          // in the base snippet in <head>.
+          if (window.hhLoadPixel) window.hhLoadPixel();
         }
       }
     ],
