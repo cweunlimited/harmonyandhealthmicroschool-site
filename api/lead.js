@@ -16,7 +16,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = 'Harmony and Health Microschool <info@harmonyandhealthmicroschool.com>';
 // Personal-looking sender for the family welcome note. Reading as a person
 // rather than a brand keeps Gmail from filing it under the Promotions tab.
-const FROM_WELCOME = 'Chris and Monika at Harmony and Health <info@harmonyandhealthmicroschool.com>';
+const FROM_WELCOME = 'Chris and Monika at Harmony and Health Microschool <info@harmonyandhealthmicroschool.com>';
 const TEAM = 'info@harmonyandhealthmicroschool.com';
 const BOOKING = 'https://calendar.app.google/SV24SpsTbCqi8ncg9';
 
@@ -35,7 +35,7 @@ function welcomeEmail(firstName) {
   return (
     '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#222;">' +
       '<p>Hi ' + firstName + ',</p>' +
-      "<p>Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health together, so I wanted to say hello personally.</p>" +
+      "<p>Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health Microschool together, so I wanted to say hello personally.</p>" +
       "<p>We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:</p>" +
       '<p><a href="' + BOOKING + '">' + BOOKING + '</a></p>' +
       "<p>Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.</p>" +
@@ -49,7 +49,7 @@ function welcomeText(firstName) {
   return [
     'Hi ' + firstName + ',',
     '',
-    "Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health together, so I wanted to say hello personally.",
+    "Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health Microschool together, so I wanted to say hello personally.",
     '',
     "We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:",
     '',
