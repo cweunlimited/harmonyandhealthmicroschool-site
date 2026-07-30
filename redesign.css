@@ -38,11 +38,14 @@
 /* ---- Canvas + gradient bands ---- */
 html, body { background: var(--iris) !important; }
 .grad-pair { background: transparent !important; }
-.section { background: transparent !important; padding: 100px 0 !important; }
-/* The gradient lives on the FIRST section of each pair: full color at its
-   top, fading to the neutral base by its own bottom edge (the seam). The
-   pair's second section stays entirely the neutral base color. */
-.grad-band {
+.section { padding: 100px 0 !important; }
+/* One complete gradient cycle per section: full color at the element's own top,
+   fading to the neutral base by its own bottom edge. This previously sat only on
+   the first section of each .grad-pair, so a single cycle was stretched across
+   two sections and the rhythm drifted wherever their heights differed.
+   .grad-band stays in the list because the homepage hero, privacy and thank-you
+   wrap their opening content in a plain div that carries the background. */
+.section, .hero-text, .grad-band {
   background:
     linear-gradient(180deg, rgba(241,242,249,0) 0%, #f1f2f9 100%),
     linear-gradient(110deg, rgba(104,196,56,0.18) 0%, rgba(232,19,22,0.11) 50%, rgba(87,48,198,0.20) 100%),
@@ -55,7 +58,10 @@ html, body { background: var(--iris) !important; }
    so other pages keep the 84px their headings need to clear the nav. Browsers
    without :has() simply keep the padding, which is the old look. */
 .grad-band-first:has(.hero-video-wrapper) { padding-top: 0 !important; }
-.bg-light { background: transparent !important; }
+/* .bg-light used to be flattened to transparent so it read as the neutral half
+   of a pair. Every section now carries its own gradient, and each .bg-light
+   element is also a .section, so the rule above (which is !important, unlike
+   base .bg-light) covers them. Neutralising here would cancel the gradient. */
 
 /* ---- Body: humanist grotesque, warm violet ink ---- */
 body, p, li, .section-intro, .hero-sub, .program-list li,
@@ -351,7 +357,10 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   margin: 0 !important;
   border-radius: 0 !important;
 }
-.hero-text { background: transparent !important; text-align: center !important; }
+/* No background reset here: .hero-text is a section-level block, so it takes its
+   own gradient cycle from the rule above rather than showing the tail of the
+   hero band's (which, spanning the 100dvh photo, had already faded to neutral). */
+.hero-text { text-align: center !important; }
 .hero-text .hero-sub { max-width: 580px !important; margin-left: auto !important; margin-right: auto !important; }
 .hero-actions { justify-content: center !important; }
 .hero-text .btn-secondary-dark { display: none !important; }
