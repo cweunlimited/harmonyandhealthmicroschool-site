@@ -49,6 +49,12 @@ html, body { background: var(--iris) !important; }
     #f1f2f9 !important;
 }
 .grad-band-first { padding-top: 84px !important; }
+/* The homepage hero is full-bleed, so its band starts flush at the very top and
+   the photo runs under the fixed nav, whose rounded bottom corners then reveal
+   the image instead of the page background. Scoped to the band holding the hero
+   so other pages keep the 84px their headings need to clear the nav. Browsers
+   without :has() simply keep the padding, which is the old look. */
+.grad-band-first:has(.hero-video-wrapper) { padding-top: 0 !important; }
 .bg-light { background: transparent !important; }
 
 /* ---- Body: humanist grotesque, warm violet ink ---- */
