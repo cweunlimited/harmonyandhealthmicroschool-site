@@ -332,7 +332,9 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
 .hero-video-wrapper { margin-top: 0 !important; padding-top: 0 !important; background: transparent !important; }
 .hero { background: transparent !important; text-align: center !important; }
 .hero img {
-  height: 46vh !important;
+  /* 59vh keeps the hero the same on-screen width as the previous 2.28:1
+     banner did at 46vh, now that the image is 16:9. */
+  height: 59vh !important;
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;
@@ -377,7 +379,7 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   .program-card:nth-child(even) .program-img-wrap { order: 0 !important; }
   .about-img-wrap, .approach-img-wrap, .program-img-wrap { max-width: 100% !important; }
   .about-cards, .approach-steps, .programs-grid { gap: 56px !important; }
-  /* Mobile hero: full-width at natural height (no 46vh letterbox bands) */
+  /* Mobile hero: full-width at natural height (no fixed-height letterbox bands) */
   .hero img { height: auto !important; width: 100% !important; }
 }
 
