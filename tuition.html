@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tuition and Affordability | Harmony and Health Microschool</title>
-  <meta name="description" content="Tuition at Harmony and Health Microschool in Miami, FL. A premium, individualized K-5 education made affordable through Florida's school choice scholarship, inaugural family discounts, and flexible monthly payment plans.">
+  <meta name="description" content="Tuition at Harmony and Health Microschool in Miami, FL. A premium, individualized K-5 education made affordable through Florida's school choice scholarship, founding family discounts, and flexible monthly payment plans.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://harmonyandhealthmicroschool.com/tuition">
 
@@ -17,7 +17,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Tuition and Affordability | Harmony and Health Microschool">
-  <meta property="og:description" content="A premium, individualized K-5 education in Miami, made affordable through Florida's scholarship, inaugural discounts, and monthly payment plans.">
+  <meta property="og:description" content="A premium, individualized K-5 education in Miami, made affordable through Florida's scholarship, founding family discounts, and monthly payment plans.">
   <meta property="og:image" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
   <meta property="og:image:secure_url" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -259,6 +259,52 @@
       font-size: 1.02rem;
     }
     .cost-monthly strong { color: var(--navy-bright, #5730C6); font-size: 1.3rem; font-family: 'Fredoka One', cursive; }
+    /* Itemised tuition lines. Figures sit in a fixed-width left column so they
+       stack into one edge you can scan straight down, with the explanation
+       alongside rather than wrapped around them. */
+    .cost-lines { list-style: none; margin: 0; padding: 0; }
+    .cost-line {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px dashed #e6e8f4;
+    }
+    .cost-line:last-child { border-bottom: none; }
+    .cl-num {
+      flex: 0 0 auto;
+      min-width: 132px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: var(--navy-bright, #5730C6);
+    }
+    .cl-note {
+      flex: 1;
+      color: #555;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+    /* The founding family discount, in brand red so the offer stands out. The
+       label is bolder than the qualifying detail that follows it. */
+    .cost-line.is-discount .cl-num { color: var(--red, #E81316); }
+    .cost-line.is-discount .cl-note { color: var(--red, #E81316); font-weight: 600; }
+    .cost-line.is-discount .cl-note strong { font-weight: 800; }
+    .cost-line.is-total {
+      border-bottom: none;
+      border-top: 2px solid var(--navy, #3A1B72);
+      margin-top: 6px;
+      padding-top: 16px;
+    }
+    .cost-line.is-total .cl-num { font-size: 1.85rem; }
+    .cost-line.is-total .cl-note { color: var(--navy, #3A1B72); font-weight: 700; }
+    @media (max-width: 560px) {
+      .cost-line { gap: 14px; }
+      .cl-num { min-width: 104px; font-size: 1.25rem; }
+      .cost-line.is-total .cl-num { font-size: 1.5rem; }
+      .cl-note { font-size: 0.92rem; }
+    }
     .cost-tip {
       margin-top: 18px;
       background: var(--green-light, #e9f8e2);
@@ -460,9 +506,25 @@
 
       <div class="cost-card reveal">
         <div class="cost-card-head">Per Student, Per Year</div>
-        <div class="cost-body" style="text-align:center;">
-          <div class="pay-amount">$22,000<small> / year</small></div>
-          <div class="cost-monthly">About <strong>$14,000</strong> after the Florida school choice scholarship most families receive.</div>
+        <div class="cost-body">
+          <ul class="cost-lines">
+            <li class="cost-line">
+              <span class="cl-num">$22,000</span>
+              <span class="cl-note">Standard tuition per year, all inclusive</span>
+            </li>
+            <li class="cost-line is-discount">
+              <span class="cl-num">10% off</span>
+              <span class="cl-note"><strong>Founding family discount.</strong> For families who join us in our opening year, and your rate stays locked in for as long as your child is enrolled.</span>
+            </li>
+            <li class="cost-line">
+              <span class="cl-num">$19,800</span>
+              <span class="cl-note">Your tuition as a founding family</span>
+            </li>
+            <li class="cost-line is-total">
+              <span class="cl-num">$11,800</span>
+              <span class="cl-note">Your estimated cost after the Florida school choice scholarship most families receive</span>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -471,7 +533,7 @@
         <p>Most schools stack separate registration, technology, and supply fees on top of tuition. We have built all of that into one transparent price, so there are no surprise add-ons during the year. The only additional item is a one-time $350 enrollment fee to reserve your child's spot, and it is applied directly toward your tuition rather than charged on top of it.</p>
       </div>
 
-      <p class="reveal" style="max-width:640px;margin:26px auto 0;text-align:center;color:#555;font-size:1.05rem;line-height:1.6;">Founding families and families who pay in full receive additional savings, and flexible monthly payment plans and need-based financial aid are available. <a href="/#waitlist" style="color:var(--navy-bright,#5730C6);font-weight:800;">Reach out</a> and we will walk you through the options that fit your family.</p>
+      <p class="reveal" style="max-width:640px;margin:26px auto 0;text-align:center;color:#555;font-size:1.05rem;line-height:1.6;">Families who pay in full receive additional savings, and flexible monthly payment plans and need-based financial aid are available. <a href="/#waitlist" style="color:var(--navy-bright,#5730C6);font-weight:800;">Reach out</a> and we will walk you through the options that fit your family.</p>
     </div>
   </section>
 
