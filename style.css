@@ -136,7 +136,7 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   transform: translate(0);
 }
 
-/* Cards stagger: slide up from bottom, 0.5s between each.
+/* Cards stagger: slide up from bottom, 0.08s between each.
    Uses a keyframe animation with backwards fill so the resting
    transform is NOT pinned afterward, which keeps :hover float working. */
 @keyframes revealUp {
@@ -148,16 +148,22 @@ h2.light, p.light, .section-intro.light { color: #fff; }
   opacity: 1;
   animation: revealUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
-.reveal-stagger.visible > *:nth-child(1)  { animation-delay: 1.5s; }
-.reveal-stagger.visible > *:nth-child(2)  { animation-delay: 2.0s; }
-.reveal-stagger.visible > *:nth-child(3)  { animation-delay: 2.5s; }
-.reveal-stagger.visible > *:nth-child(4)  { animation-delay: 3.0s; }
-.reveal-stagger.visible > *:nth-child(5)  { animation-delay: 3.5s; }
-.reveal-stagger.visible > *:nth-child(6)  { animation-delay: 4.0s; }
-.reveal-stagger.visible > *:nth-child(7)  { animation-delay: 4.5s; }
-.reveal-stagger.visible > *:nth-child(8)  { animation-delay: 5.0s; }
-.reveal-stagger.visible > *:nth-child(9)  { animation-delay: 5.5s; }
-.reveal-stagger.visible > *:nth-child(10) { animation-delay: 6.0s; }
+.reveal-stagger.visible > *:nth-child(1)  { animation-delay: 0s; }
+.reveal-stagger.visible > *:nth-child(2)  { animation-delay: 0.08s; }
+.reveal-stagger.visible > *:nth-child(3)  { animation-delay: 0.16s; }
+.reveal-stagger.visible > *:nth-child(4)  { animation-delay: 0.24s; }
+.reveal-stagger.visible > *:nth-child(5)  { animation-delay: 0.32s; }
+.reveal-stagger.visible > *:nth-child(6)  { animation-delay: 0.40s; }
+.reveal-stagger.visible > *:nth-child(7)  { animation-delay: 0.48s; }
+.reveal-stagger.visible > *:nth-child(8)  { animation-delay: 0.56s; }
+.reveal-stagger.visible > *:nth-child(9)  { animation-delay: 0.64s; }
+.reveal-stagger.visible > *:nth-child(10) { animation-delay: 0.72s; }
+
+/* The homepage hero uses the same stagger but plays on page load rather than
+   on scroll, so it keeps its original slower choreography. Carries an extra
+   class so it outranks the scroll timings above regardless of order. */
+.reveal-stagger.hero-bottom-stagger.visible > *:nth-child(1) { animation-delay: 1.5s; }
+.reveal-stagger.hero-bottom-stagger.visible > *:nth-child(2) { animation-delay: 2.0s; }
 
 /* Kept for any remaining .reveal/.fade-in usage */
 .reveal {

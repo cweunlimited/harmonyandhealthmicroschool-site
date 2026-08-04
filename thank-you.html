@@ -320,16 +320,19 @@
 
     // Scroll-reveal: .section-header and .reveal start hidden, so they must be
     // made visible or the page renders as blank space.
+    // Each element is watched directly rather than its parent section, so it
+    // animates as it rises into view instead of when the section's top edge
+    // grazes the viewport.
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.section-header, .reveal-stagger, .reveal')
-            .forEach(el => el.classList.add('visible'));
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.05 });
-    document.querySelectorAll('section').forEach(s => revealObserver.observe(s));
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.section-header, .reveal-stagger, .reveal')
+      .forEach(el => revealObserver.observe(el));
   </script>
   <script src="map-embed.js" defer></script>
 </body>

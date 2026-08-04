@@ -651,20 +651,22 @@
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Scroll-triggered animations
+    // Scroll-triggered animations: watch each animated element itself, not its
+    // parent section. A tall section met the old 5% threshold while its cards
+    // were still far below the fold, so the stagger played out off-screen, and
+    // because the section was then unobserved it never replayed. threshold 0
+    // with a bottom rootMargin fires as the element itself rises into view, and
+    // stays correct for elements taller than the viewport.
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.section-header, .reveal-stagger, .reveal').forEach(el => {
-            el.classList.add('visible');
-          });
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.05 });
-    document.querySelectorAll('section').forEach(section => {
-      revealObserver.observe(section);
-    });
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.section-header, .reveal-stagger, .reveal')
+      .forEach(el => revealObserver.observe(el));
 
     // Smooth scroll for in-page anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
