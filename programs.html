@@ -33,7 +33,7 @@
   <meta name="twitter:description" content="Personalized academics across every subject, an hour of daily music, fitness and wellness, and hands-on Exploration Fridays, in a class of just 15.">
   <meta name="twitter:image" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
 
-  <!-- Silktide Consent Manager (loads Google Analytics + Meta Pixel only after consent) -->
+  <!-- Silktide Consent Manager: provides the notice, the preferences panel and the opt-out. Tracking itself is gated by the head snippet below. -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" id="silktide-consent-manager-css" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css" integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/" crossorigin="anonymous">
   <style id="silktide-consent-manager-overrides">
@@ -49,12 +49,12 @@
     --iconBackgroundColor: #FFFFFF;
   }
   </style>
-  <!-- Meta Pixel base. Queues init + PageView; fbevents.js (which flushes the
-       queue and does the real tracking) is loaded ONLY when Marketing consent is
-       present - read from stored consent on load below, or the moment it's
-       granted via the banner's onAccept. No script/cookie/network call without
-       consent. We load it ourselves so it works on return visits (Silktide does
-       not reliably re-inject it when consent is already stored). -->
+  <!-- Meta Pixel + GA4 base. Opt-out model: both tags load on page load
+       unless the visitor has explicitly declined that category. This matches
+       how US state privacy laws work, which require notice and the ability to
+       opt out rather than prior opt-in; the banner and the Consent Preferences
+       link provide both. Only a stored "false" suppresses a tag, and declining
+       marketing also revokes the Pixel immediately on the current page. -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -64,8 +64,16 @@
     window.hhLoadPixel=function(){if(window._hhPixelLoaded)return;window._hhPixelLoaded=true;
       var s=document.createElement('script');s.async=true;
       s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s);};
-    try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
-      if(k&&k.indexOf('consent.marketing')!==-1&&localStorage.getItem(k)==='true'){window.hhLoadPixel();break;}}}catch(e){}
+    window.hhLoadGA=function(){if(window._hhGALoaded)return;window._hhGALoaded=true;
+      var s=document.createElement('script');s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-J1GZ852S4E';document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];function g(){window.dataLayer.push(arguments);}
+      g('js',new Date());g('config','G-J1GZ852S4E');};
+    // Only an explicit "false" opts a category out; no stored choice means allowed.
+    window.hhOptedOut=function(c){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+      if(k&&k.indexOf('consent.'+c)!==-1)return localStorage.getItem(k)==='false';}}catch(e){}return false;};
+    if(!window.hhOptedOut('marketing'))window.hhLoadPixel();
+    if(!window.hhOptedOut('analytics'))window.hhLoadGA();
   </script>
   <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js" integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq" crossorigin="anonymous"></script>
   <script>
@@ -94,19 +102,12 @@
         label: "Analytics",
         description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
         required: false,
+        defaultValue: true,
         gtag: "analytics_storage",
-        scripts: [
-          {
-            url: "https://www.googletagmanager.com/gtag/js?id=G-J1GZ852S4E",
-            load: "async"
-          }
-        ],
         onAccept: function() {
-          // Google Analytics 4 (G-J1GZ852S4E)
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { window.dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', 'G-J1GZ852S4E');
+          // The head snippet already loads GA on nearly every visit; this
+          // covers a visitor who had opted out switching back on.
+          if (window.hhLoadGA) window.hhLoadGA();
         }
       },
       {
@@ -114,22 +115,26 @@
         label: "Marketing",
         description: "<p>These cookies are used by us and our advertising partners to show you relevant ads on this site and elsewhere, and to measure how those campaigns perform.</p>",
         required: false,
+        defaultValue: true,
         gtag: [
           "ad_storage",
           "ad_user_data",
           "ad_personalization"
         ],
         onAccept: function() {
-          // Marketing just granted - load the Pixel now (it flushes the queued
-          // init + PageView). Return visits load it via the on-load consent check
-          // in the base snippet in <head>.
+          // Covers a visitor switching marketing back on after opting out.
           if (window.hhLoadPixel) window.hhLoadPixel();
+        },
+        onReject: function() {
+          // Stop sending straight away. The tag stays in memory but goes quiet,
+          // and the stored "false" keeps it from loading at all on later pages.
+          if (window.fbq) window.fbq('consent', 'revoke');
         }
       }
     ],
     text: {
       prompt: {
-        description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic.</p>",
+        description: "<p>We use cookies to improve your experience, personalize content, and measure our advertising. Non-essential cookies are on by default. You can turn them off at any time.</p>",
         acceptAllButtonText: "Accept all",
         acceptAllButtonAccessibleLabel: "Accept all cookies",
         rejectNonEssentialButtonText: "Reject non-essential",
