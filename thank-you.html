@@ -50,10 +50,11 @@
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
     fbq('init','2159844891459560');
     fbq('track','PageView');
-    // This page is only reached after a form submit; queue Lead too. Guard so a
-    // refresh doesn't double-count it.
-    try { if (!sessionStorage.getItem('hhLeadFired')) { fbq('track','Lead'); sessionStorage.setItem('hhLeadFired','1'); } }
-    catch (e) { fbq('track','Lead'); }
+    // Lead is deliberately NOT fired here. It used to be, on the assumption
+    // that this page is only reached after a submit, but anyone loading
+    // /thank-you in a fresh session fired one with no submission behind it,
+    // which over-reported leads against the inbox. It now fires in
+    // lead-form.js only once the API confirms the submission succeeded.
     window.hhLoadPixel=function(){if(window._hhPixelLoaded)return;window._hhPixelLoaded=true;
       var s=document.createElement('script');s.async=true;
       s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s);};

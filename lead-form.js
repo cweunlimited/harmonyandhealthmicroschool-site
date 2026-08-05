@@ -1,6 +1,7 @@
-/* "Request Information" form: submits to /api/lead, then sends the family to
- * the /thank-you page (where the Meta "Lead" pixel event fires). Keeps the
- * visitor on our own domain the whole time, unlike the old iframe embed. */
+/* "Request Information" form: submits to /api/lead, fires the Meta "Lead"
+ * pixel event once the API confirms success, then sends the family to the
+ * /thank-you page. Keeps the visitor on our own domain the whole time, unlike
+ * the old iframe embed. */
 (function () {
   'use strict';
 
@@ -13,6 +14,26 @@
   function setStatus(msg, isError) {
     status.textContent = msg || '';
     status.className = 'lf-status' + (isError ? ' lf-error' : '');
+  }
+
+  /* Fire Lead against a confirmed submission. This previously lived on the
+   * /thank-you page, where it counted anyone who loaded that page, including
+   * revisits in a new session, so the pixel reported more leads than actually
+   * arrived in the inbox. Tying it to a successful API response makes one Lead
+   * mean one real enquiry.
+   *
+   * fbq is a no-op queue until fbevents.js loads, which only happens with
+   * marketing consent, so this respects the consent gate exactly as before.
+   * eventID gives Meta a key to dedupe against if a server-side copy is ever
+   * added, and guards against a retry double-counting. */
+  function trackLead() {
+    try {
+      if (typeof window.fbq !== 'function') return;
+      var eventId = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+      window.fbq('track', 'Lead', {}, { eventID: eventId });
+    } catch (e) {
+      /* Tracking must never block the redirect. */
+    }
   }
 
   form.addEventListener('submit', function (e) {
@@ -60,8 +81,10 @@
       body: JSON.stringify(payload)
     }).then(function (res) {
       if (res.ok) {
-        // Success. The Lead pixel event fires on /thank-you.
-        window.location.href = '/thank-you';
+        trackLead();
+        // Brief pause before navigating: a redirect fired in the same tick can
+        // cancel the pixel's in-flight request and lose the event.
+        setTimeout(function () { window.location.href = '/thank-you'; }, 350);
         return;
       }
       return res.json().catch(function () { return {}; }).then(function (data) {
