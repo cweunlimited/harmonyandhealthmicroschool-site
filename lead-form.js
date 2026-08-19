@@ -66,7 +66,10 @@
       lastName: lastName,
       email: email,
       phone: phone,
-      grade: form.grade.value,
+      // The form used to ask for the child's grade; it now asks which class or
+      // program they are interested in. Read whichever field is present so an
+      // older cached copy of a page keeps working.
+      interest: (form.interest || form.grade || {}).value || '',
       message: form.message.value.trim(),
       company: form.company.value // honeypot
     };

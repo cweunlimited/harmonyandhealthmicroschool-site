@@ -182,12 +182,30 @@ h2 em { font-style: italic !important; font-family: var(--serif) !important; col
   padding: 13px 26px !important;
 }
 .nav-logo-text { font-family: var(--serif) !important; color: var(--ink) !important; }
+/* Every nav link carries white-space:nowrap, so .nav-links cannot shrink; the
+   flex row therefore takes the slack out of the logo instead, and "Harmony and
+   Health" broke across two lines. Pin the logo at its natural width and stop it
+   wrapping. "Microschool" is display:block, so it still sits underneath. */
+.nav-logo { flex: 0 0 auto !important; }
+.nav-logo-text { white-space: nowrap !important; }
+/* With the logo no longer absorbing the overflow, the links need the room back
+   at the narrow end of desktop, just above the hamburger breakpoint. */
+@media (min-width: 1151px) and (max-width: 1360px) {
+  .nav-links { gap: 2px !important; }
+  .nav-links a { padding-left: 10px !important; padding-right: 10px !important; }
+  .nav-links a.nav-cta { padding-left: 18px !important; padding-right: 18px !important; }
+}
 .nav-links a { font-family: var(--grot) !important; color: var(--ink) !important; font-weight: 500 !important; letter-spacing: 0.01em; }
 /* Mobile menu is a dark-purple overlay, so its links must be light */
 @media (max-width: 1150px) {
   .nav-links a { color: #fff !important; }
 }
 .nav-menu-hero img { border-radius: 16px !important; }
+/* Arriving at the homepage with a hash already in the URL (/#classes from
+   another page, or a bookmark) uses the browser's own jump. The smooth-scroll
+   script only intercepts clicks, so it never runs here and the target would
+   otherwise land behind the fixed navbar. */
+:target { scroll-margin-top: 96px; }
 
 /* ---- Buttons: pill shape, one violet fill + violet outline ---- */
 .btn-primary, .nav-cta {

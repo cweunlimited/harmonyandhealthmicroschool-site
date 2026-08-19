@@ -39,7 +39,7 @@ function welcomeEmail(firstName) {
       "<p>We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:</p>" +
       '<p><a href="' + BOOKING + '">' + BOOKING + '</a></p>' +
       "<p>Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.</p>" +
-      "<p>We keep the school small on purpose, just fifteen students, so we have the time to really know every child. We can't wait to learn your family's story.</p>" +
+      "<p>We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.</p>" +
       '<p>Warmly,<br>Chris and Monika<br>Harmony and Health Microschool<br>(786) 505-0768</p>' +
     '</div>'
   );
@@ -57,7 +57,7 @@ function welcomeText(firstName) {
     '',
     "Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.",
     '',
-    "We keep the school small on purpose, just fifteen students, so we have the time to really know every child. We can't wait to learn your family's story.",
+    "We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.",
     '',
     'Warmly,',
     'Chris and Monika',
@@ -78,7 +78,7 @@ function notifyEmail(d) {
         row('Name', esc(d.firstName) + ' ' + esc(d.lastName)) +
         row('Email', '<a href="mailto:' + esc(d.email) + '" style="color:#5730C6;">' + esc(d.email) + '</a>') +
         row('Phone', esc(d.phone)) +
-        row("Child's grade", esc(d.grade) || '&mdash;') +
+        row('Interested in', esc(d.interest) || '&mdash;') +
         row('Message', esc(d.message).replace(/\n/g, '<br>') || '&mdash;') +
       '</table>' +
       '<p style="color:#777;font-size:13px;margin-top:18px;">Reply to this email to respond directly to the family. Remember to add them to Newton.</p>' +
@@ -102,7 +102,9 @@ export default async function handler(req, res) {
     var lastName = String(body.lastName || '').trim();
     var email = String(body.email || '').trim();
     var phone = String(body.phone || '').trim();
-    var grade = String(body.grade || '').trim();
+    // "interest" replaced "grade" when the form started asking which class or
+    // program a family wants rather than what grade their child is entering.
+    var interest = String(body.interest || body.grade || '').trim();
     var message = String(body.message || '').trim();
 
     if (!firstName || !lastName || !email || !phone) {
@@ -134,7 +136,7 @@ export default async function handler(req, res) {
         to: TEAM,
         replyTo: email,
         subject: ('New inquiry: ' + firstName + ' ' + lastName).trim(),
-        html: notifyEmail({ firstName: firstName, lastName: lastName, email: email, phone: phone, grade: grade, message: message })
+        html: notifyEmail({ firstName: firstName, lastName: lastName, email: email, phone: phone, interest: interest, message: message })
       })
     ]);
 

@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/programs",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tuition",
+      "destination": "/classes",
+      "permanent": true
+    }
+  ]
 }
