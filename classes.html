@@ -624,6 +624,11 @@
 
     @media (max-width: 700px) {
       .solo-card { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
+      /* flex-basis applies down the main axis, so the 320px that sets a minimum
+         WIDTH in the desktop row becomes a minimum HEIGHT once the card stacks,
+         and flex-grow stretched it further. That was the empty band between the
+         facts and the price. Let the body take its content height instead. */
+      .solo-body { flex: 0 1 auto; width: 100%; }
       .solo-price { text-align: left; width: 100%; }
     }
 
