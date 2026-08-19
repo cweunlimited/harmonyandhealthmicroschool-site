@@ -18,7 +18,7 @@ const FROM = 'Harmony and Health Microschool <info@harmonyandhealthmicroschool.c
 // rather than a brand keeps Gmail from filing it under the Promotions tab.
 const FROM_WELCOME = 'Chris and Monika at Harmony and Health Microschool <info@harmonyandhealthmicroschool.com>';
 const TEAM = 'info@harmonyandhealthmicroschool.com';
-const BOOKING = 'https://calendar.app.google/SV24SpsTbCqi8ncg9';
+const PHONE = '786-505-0768';
 
 function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -27,7 +27,7 @@ function esc(s) {
 }
 
 /* The family welcome note. Deliberately plain and personal: no logo image, no
- * template container, one plain link, conversational copy, and a matching
+ * template container, no links at all, conversational copy, and a matching
  * plain-text part (see welcomeText). This keeps Gmail from tagging it
  * "Promotions" and lands it in the Primary inbox, where a note from a real
  * person belongs. */
@@ -36,11 +36,10 @@ function welcomeEmail(firstName) {
     '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#222;">' +
       '<p>Hi ' + firstName + ',</p>' +
       "<p>Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health Microschool together, so I wanted to say hello personally.</p>" +
-      "<p>We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:</p>" +
-      '<p><a href="' + BOOKING + '">' + BOOKING + '</a></p>' +
-      "<p>Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.</p>" +
+      "<p>The next step is just a chat about your child: what they are drawn to, what they love doing, and what you are hoping to find for them. That usually tells us pretty quickly which of our classes would suit them best.</p>" +
+      '<p>Call or text us any time at ' + PHONE + ", or simply reply to this email, whichever is easiest for you. We'll get back to you quickly either way.</p>" +
       "<p>We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.</p>" +
-      '<p>Warmly,<br>Chris and Monika<br>Harmony and Health Microschool<br>(786) 505-0768</p>' +
+      '<p>Warmly,<br>Chris and Monika<br>Harmony and Health Microschool<br>' + PHONE + '</p>' +
     '</div>'
   );
 }
@@ -51,18 +50,16 @@ function welcomeText(firstName) {
     '',
     "Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health Microschool together, so I wanted to say hello personally.",
     '',
-    "We'd love to hear a little about your family and what you're hoping to find for your child. The easiest next step is a short, casual phone call. If you'd like to pick a time that works for you, you can grab one here:",
+    'The next step is just a chat about your child: what they are drawn to, what they love doing, and what you are hoping to find for them. That usually tells us pretty quickly which of our classes would suit them best.',
     '',
-    BOOKING,
-    '',
-    "Or just reply to this email or call us at (786) 505-0768, whatever's easiest. Either way, we'll be in touch soon.",
+    'Call or text us any time at ' + PHONE + ", or simply reply to this email, whichever is easiest for you. We'll get back to you quickly either way.",
     '',
     "We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.",
     '',
     'Warmly,',
     'Chris and Monika',
     'Harmony and Health Microschool',
-    '(786) 505-0768'
+    PHONE
   ].join('\n');
 }
 
