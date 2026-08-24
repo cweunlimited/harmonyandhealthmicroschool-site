@@ -467,6 +467,23 @@
     a.class-showcase:hover { background: #ded7f0; }
 
     /* ---------- Semester showcase ---------- */
+    /* Full-width banner opening the section, ahead of the heading. Wider than
+       the class rows on purpose, so it reads as a header rather than a card. */
+    .showcase-banner { margin: 0 auto 46px; }
+    .showcase-banner img {
+      width: 100%;
+      aspect-ratio: 2.6 / 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+      box-shadow: var(--soft-shadow, rgba(58,27,114,0.10) 0px 10px 24px);
+    }
+    /* 2.6:1 gets too letterboxed on a phone, so it stands taller there. */
+    @media (max-width: 880px) {
+      .showcase-banner { margin-bottom: 32px; }
+      .showcase-banner img { aspect-ratio: 16 / 9; border-radius: 14px; }
+    }
+
     .showcase-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -809,6 +826,10 @@
   <!-- SEMESTER SHOWCASE -->
   <section id="showcase" class="section bg-light">
     <div class="container">
+      <div class="showcase-banner reveal">
+        <img src="HarmonyAndHealth-showcase.jpg" alt="An empty theatre with lit red stage curtains above rows of seats" loading="lazy">
+      </div>
+
       <div class="section-header">
         <div class="section-tag">Twice a Year</div>
         <h2>Every Semester Ends in a Showcase</h2>
