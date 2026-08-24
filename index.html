@@ -472,16 +472,17 @@
     .showcase-banner { margin: 0 auto 46px; }
     .showcase-banner img {
       width: 100%;
-      aspect-ratio: 2.6 / 1;
+      aspect-ratio: 2000 / 384;
       object-fit: cover;
       display: block;
       border-radius: 18px;
       box-shadow: var(--soft-shadow, rgba(58,27,114,0.10) 0px 10px 24px);
     }
-    /* 2.6:1 gets too letterboxed on a phone, so it stands taller there. */
+    /* The strip is only ~64px tall on a phone, so it stands taller there and
+       object-fit crops in from the centre of the stage. */
     @media (max-width: 880px) {
       .showcase-banner { margin-bottom: 32px; }
-      .showcase-banner img { aspect-ratio: 16 / 9; border-radius: 14px; }
+      .showcase-banner img { aspect-ratio: 2.6 / 1; border-radius: 14px; }
     }
 
     .showcase-grid {
