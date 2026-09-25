@@ -557,6 +557,15 @@
       .class-rows--aside { margin-top: 40px; }
       .class-foot { margin-top: 58px; }
     }
+    /* Mommy & Me is an age range; the other two stats are grade ranges. The
+       unit sits on the number itself so "1-5" never reads as 1st to 5th
+       grade. <small>, not <span>: .hero-stat styles every span inside it as
+       the uppercase label underneath. */
+    .hero-stat strong small {
+      font-size: 0.5em;
+      margin-left: 0.18em;
+      letter-spacing: 0;
+    }
   </style>
 </head>
 <body>
@@ -617,7 +626,7 @@
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <strong>1&ndash;5</strong>
+            <strong>1&ndash;5<small>yrs</small></strong>
             <span>Mommy &amp; Me<br>Music</span>
           </div>
           <div class="hero-stat-divider"></div>
