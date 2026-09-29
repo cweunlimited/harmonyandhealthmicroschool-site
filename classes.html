@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Schedule and Pricing | Harmony and Health Microschool</title>
-  <meta name="description" content="Class schedule and pricing at Harmony and Health Microschool in Miami, FL, for children from age 1 through 5th grade. Music, art, movement and gardening classes during the day for homeschooled students and after school, plus Mommy and Me music, Harmony Choir, one-to-one lessons, tutoring and coaching.">
+  <meta name="description" content="Class schedule and pricing at Harmony and Health Microschool in Miami, FL, for children from age 1 through 5th grade. Music, art, movement and gardening classes during the day for homeschooled students and in the afternoon, plus Mommy and Me music, Harmony Choir, one-to-one lessons, tutoring and coaching.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://harmonyandhealthmicroschool.com/classes">
 
@@ -17,7 +17,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Class Schedule and Pricing | Harmony and Health Microschool">
-  <meta property="og:description" content="Daytime and after-school enrichment classes, Harmony Choir and one-to-one lessons in Miami, FL, for ages 1 through 5th grade.">
+  <meta property="og:description" content="Daytime and afternoon enrichment classes, Harmony Choir and one-to-one lessons in Miami, FL, for ages 1 through 5th grade.">
   <meta property="og:image" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
   <meta property="og:image:secure_url" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -30,7 +30,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Class Schedule and Pricing | Harmony and Health Microschool">
-  <meta name="twitter:description" content="Daytime and after-school enrichment classes, Harmony Choir and one-to-one lessons in Miami, FL, for ages 1 through 5th grade.">
+  <meta name="twitter:description" content="Daytime and afternoon enrichment classes, Harmony Choir and one-to-one lessons in Miami, FL, for ages 1 through 5th grade.">
   <meta name="twitter:image" content="https://harmonyandhealthmicroschool.com/og-image-v4.jpg">
 
   <!-- Silktide Consent Manager: provides the notice, the preferences panel and the opt-out. Tracking itself is gated by the head snippet below. -->
@@ -387,7 +387,7 @@
       .rate-row { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
 
-    /* ---------- Build Your Week picker ---------- */
+    /* ---------- Choose Your Classes picker ---------- */
     .picker {
       display: grid;
       grid-template-columns: 1fr 320px;
@@ -457,7 +457,7 @@
       font-size: 1.02rem;
     }
     .pick-when { display: block; font-size: 0.87rem; color: #666; margin-top: 2px; }
-    .pick-hrs {
+    .pick-price {
       flex: 0 0 auto;
       font-size: 0.85rem;
       font-weight: 800;
@@ -582,14 +582,6 @@
       .trial-note { padding: 22px 18px; }
     }
 
-    /* Bundles: three across, then the two passes side by side, so neither row
-       is left with an orphan card. Six columns with spans keeps both rows full. */
-    @media (min-width: 901px) {
-      .price-grid.bundles { grid-template-columns: repeat(6, 1fr); }
-      .price-grid.bundles > .price-card:nth-child(-n+3) { grid-column: span 2; }
-      .price-grid.bundles > .price-card:nth-child(n+4)  { grid-column: span 3; }
-    }
-
     /* ---------- Single-offering card (Mommy & Me) ---------- */
     .solo-card {
       display: flex;
@@ -632,24 +624,128 @@
       .solo-price { text-align: left; width: 100%; }
     }
 
-    /* Bundle cards are wide, so the badge sits in the top corner and every
-       title starts at the same height. */
-    .price-grid.bundles .price-flag {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-    }
-
-    /* Daytime cards are narrow and centred, so a corner badge would collide with
-       the title. It drops below the price instead, which still leaves all four
-       titles on one line. */
-    .price-grid.daytime .price-card { align-items: center; text-align: center; }
-    .price-grid.daytime .price-flag { order: 99; margin-top: 16px; }
-
     /* Brand red for a single word inside a heading. No !important needed:
        redesign.css forces colour on h1-h4 themselves, not on their children,
        and a declaration on the span beats an inherited value. */
     .brand-red { color: var(--red, #E81316); }
+    /* ---------- Schedule: one week per time of day ---------- */
+    .week-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 14px;
+      margin: 8px 0 16px;
+      font-size: 1.35rem;
+    }
+    .week-title span {
+      font-family: var(--grot, sans-serif);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--heather, #6b6480);
+    }
+    .week-note { margin: 16px 0 0; font-size: 0.93rem; text-align: center; }
+    .week-note + .week-title { margin-top: 54px; }
+    .slot-tutoring { background: #f7f4ff; }
+
+    /* ---------- Base prices and the multi-class scale ---------- */
+    @media (min-width: 761px) {
+      .price-grid.base { grid-template-columns: repeat(3, 1fr); }
+    }
+    .price-grid.base .price-card { align-items: center; text-align: center; }
+    .rate-scale {
+      max-width: 860px;
+      margin: 34px auto 0;
+      background: #fff;
+      border: 1px solid var(--lav, #ebe7f5);
+      border-radius: 16px;
+      padding: 26px 26px 22px;
+      text-align: center;
+    }
+    .rate-scale h3 { margin: 0 0 6px; font-size: 1.12rem; }
+    .rate-scale > p { max-width: 560px; margin: 0 auto 18px; font-size: 0.95rem; line-height: 1.6; }
+    .rate-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .rate-steps li {
+      margin: 0;
+      padding: 10px 6px;
+      border: 1px solid var(--lav, #ebe7f5);
+      border-radius: 12px;
+    }
+    .rs-n { display: block; font-size: 0.8rem; color: #777; }
+    .rs-p {
+      display: block;
+      margin-top: 2px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.25rem;
+      color: var(--navy-bright, #5730C6);
+    }
+    .rate-scale .rate-steps-note { margin: 14px auto 0; font-size: 0.88rem; }
+    @media (max-width: 760px) {
+      .rate-steps { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ---------- Choose Your Classes: time-of-day toggle and daily limit ---------- */
+    .period-toggle {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 22px;
+    }
+    .period-btn {
+      font: inherit;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      min-width: 210px;
+      padding: 12px 22px;
+      border: 1px solid var(--lav, #ebe7f5);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--navy, #3A1B72);
+      font-size: 1rem;
+      font-weight: 800;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .period-btn small { font-size: 0.78rem; font-weight: 600; color: #777; }
+    .period-btn:hover { border-color: var(--navy-bright, #5730C6); }
+    .period-btn.is-active {
+      border: 2px solid var(--navy-bright, #5730C6);
+      background: #f7f4ff;
+      color: var(--navy-bright, #5730C6);
+    }
+    /* An author display rule would beat the hidden attribute, so say it. */
+    .pick-list[hidden], .pick-block[hidden] { display: none; }
+    .pick-list + .pick-list { margin-top: 28px; }
+    .pick-list-title, .pick-group-label {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--navy-bright, #5730C6) !important;
+    }
+    .pick-group-label { margin-top: 18px; color: #777 !important; }
+    .pick-item.is-blocked { opacity: 0.5; cursor: not-allowed; }
+    .pick-item.is-blocked:hover { border-color: var(--lav, #ebe7f5); }
+    .pick-item.is-blocked input { cursor: not-allowed; }
+    .pick-block { display: block; margin-top: 3px; font-size: 0.8rem; font-weight: 700; color: #a3392e; }
+    .ps-rule {
+      margin: 16px 0 0;
+      padding-top: 12px;
+      border-top: 1px dashed #e6e8f4;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
   </style>
 
   <link rel="stylesheet" href="redesign.css">
@@ -684,40 +780,76 @@
     <div class="container">
       <div class="section-tag">Ages 1 Through 5th Grade</div>
       <h1>Schedule and Pricing</h1>
-      <p>Music, movement, art and gardening, taught in focused class times by certified educators: during the day for homeschooled students, and after school for students who attend a traditional school. Join a single class or build a full week. One-to-one lessons, tutoring and coaching are available alongside.</p>
+      <p>Music, movement, art and gardening, taught in focused class times by certified educators: during the day for homeschooled students, and in the afternoon for students who attend a traditional school. Join a single class or several. One-to-one lessons, tutoring and coaching are available alongside.</p>
       <div class="hero-note">Now enrolling for the 2026-2027 school year</div>
     </div>
   </header>
 
-  <!-- WEEKLY SCHEDULE -->
+  <!-- CLASS SCHEDULE -->
   <section class="section grad-band">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Kindergarten to 5th Grade</div>
-        <h2>After-School Schedule</h2>
-        <p class="section-intro">Monday to Friday from 4:00 to 6:00 PM, after the traditional school day, for ages 5 to 11. Pick the classes that fit your family, or take the whole week.</p>
+        <h2>Class Schedule</h2>
+        <p class="section-intro">The same classes run at two times of day: during the day for homeschooled students, and in the afternoon for students who attend a traditional school. Every class session is one hour, for ages 5 to 11.</p>
       </div>
 
+      <h3 class="week-title">Daytime <span>11:00 AM to 2:00 PM &middot; for homeschooled students</span></h3>
       <div class="week reveal-stagger">
         <div class="day">
           <h3>Monday</h3>
+          <div class="slot slot-tutoring"><span class="time">11:00 - 12:00</span><span class="cls">Math Group Tutoring</span></div>
+          <div class="slot"><span class="time">12:00 - 1:00</span><span class="cls">Group Movement</span></div>
+          <div class="slot"><span class="time">1:00 - 2:00</span><span class="cls">Gardening</span></div>
+        </div>
+        <div class="day">
+          <h3>Tuesday</h3>
+          <div class="slot slot-tutoring"><span class="time">11:00 - 12:00</span><span class="cls">Math Group Tutoring</span></div>
+          <div class="slot"><span class="time">12:00 - 1:00</span><span class="cls">Music Ensemble</span></div>
+          <div class="slot"><span class="time">1:00 - 2:00</span><span class="cls">Arts &amp; Crafts</span></div>
+        </div>
+        <div class="day">
+          <h3>Wednesday</h3>
+          <div class="slot slot-tutoring"><span class="time">11:00 - 12:00</span><span class="cls">Reading Group Tutoring</span></div>
+          <div class="slot"><span class="time">12:00 - 1:00</span><span class="cls">Group Movement</span></div>
+          <div class="slot"><span class="time">1:00 - 2:00</span><span class="cls">Gardening</span></div>
+        </div>
+        <div class="day">
+          <h3>Thursday</h3>
+          <div class="slot slot-tutoring"><span class="time">11:00 - 12:00</span><span class="cls">Reading Group Tutoring</span></div>
+          <div class="slot"><span class="time">12:00 - 1:00</span><span class="cls"><span class="brand-red">Harmony</span> Choir</span></div>
+          <div class="slot"><span class="time">1:00 - 2:00</span><span class="cls">Arts &amp; Crafts</span></div>
+        </div>
+        <div class="day">
+          <h3>Friday</h3>
+          <div class="slot"><span class="time">11:00 - 12:00</span><span class="cls">Guided Jam &amp; Improv</span></div>
+          <div class="slot"><span class="time">12:00 - 1:00</span><span class="cls">Group Movement</span></div>
+          <div class="slot"><span class="time">1:00 - 2:00</span><span class="cls">Logic Lab</span></div>
+        </div>
+      </div>
+      <p class="week-note">Each student takes up to two classes a day. Monday to Thursday, that day's group tutoring session can be added as a third hour.</p>
+
+      <h3 class="week-title">Afternoon <span>4:00 to 6:00 PM &middot; for students who attend a traditional school</span></h3>
+      <div class="week reveal-stagger">
+        <div class="day">
+          <h3>Monday</h3>
+          <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls">Group Movement</span></div>
+          <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Gardening</span></div>
+        </div>
+        <div class="day">
+          <h3>Tuesday</h3>
           <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls">Music Ensemble</span></div>
           <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Arts &amp; Crafts</span></div>
         </div>
         <div class="day">
-          <h3>Tuesday</h3>
+          <h3>Wednesday</h3>
           <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls">Group Movement</span></div>
           <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Gardening</span></div>
-        </div>
-        <div class="day">
-          <h3>Wednesday</h3>
-          <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls"><span class="brand-red">Harmony</span> Choir</span></div>
-          <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Arts &amp; Crafts</span></div>
         </div>
         <div class="day">
           <h3>Thursday</h3>
-          <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls">Group Movement</span></div>
-          <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Gardening</span></div>
+          <div class="slot"><span class="time">4:00 - 5:00</span><span class="cls"><span class="brand-red">Harmony</span> Choir</span></div>
+          <div class="slot"><span class="time">5:00 - 6:00</span><span class="cls">Arts &amp; Crafts</span></div>
         </div>
         <div class="day">
           <h3>Friday</h3>
@@ -728,174 +860,271 @@
     </div>
   </section>
 
-  <!-- BUNDLES -->
+  <!-- PRICING -->
   <section class="section grad-band">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">Most Chosen</div>
-        <h2>Popular Bundles</h2>
-        <p class="section-intro">The combinations families pick most. Prefer to choose your own? Build your week below.</p>
+        <div class="section-tag">Pricing</div>
+        <h2>Priced by the Class</h2>
+        <p class="section-intro">Every class is priced on its own, by how many times a week it meets. Take more than one and the rate for each one drops. Prices are monthly, and daytime and afternoon classes are priced the same way.</p>
       </div>
 
-      <div class="price-grid bundles reveal-stagger">
+      <div class="price-grid base reveal-stagger">
         <div class="price-card">
-          <h3>Music and Art Bundle</h3>
-          <p class="price-when">Monday &amp; Wednesday, 4:00 - 6:00 PM</p>
-          <div class="price-amt">$395<small> / month</small></div>
-          <span class="price-save">Save $105 a month</span>
-          <ul class="price-includes">
-            <li>Music Ensemble</li>
-            <li><span class="brand-red">Harmony</span> Choir</li>
-            <li>Arts &amp; Crafts</li>
-          </ul>
+          <h3>A class that meets once a week</h3>
+          <p class="price-when">Such as Music Ensemble or Logic Lab</p>
+          <div class="price-amt">$135<small> / month</small></div>
         </div>
-
         <div class="price-card">
-          <h3>Movement and Garden Bundle</h3>
-          <p class="price-when">Tuesday &amp; Thursday, 4:00 - 6:00 PM</p>
-          <div class="price-amt">$395<small> / month</small></div>
-          <span class="price-save">Save $65 a month</span>
-          <ul class="price-includes">
-            <li>Group Movement</li>
-            <li>Gardening</li>
-          </ul>
-        </div>
-
-        <div class="price-card">
-          <h3>Friday Bundle</h3>
-          <p class="price-when">Friday, 4:00 - 6:00 PM</p>
+          <h3>A class that meets twice a week</h3>
+          <p class="price-when">Such as Arts &amp; Crafts or Gardening</p>
           <div class="price-amt">$230<small> / month</small></div>
-          <span class="price-save">Save $40 a month</span>
-          <ul class="price-includes">
-            <li>Guided Jam &amp; Improv</li>
-            <li>Logic Lab</li>
-          </ul>
         </div>
-
         <div class="price-card">
-          <h3>4-Day Pass</h3>
-          <p class="price-when">Monday to Thursday, 4:00 - 6:00 PM</p>
-          <div class="price-amt">$695<small> / month</small></div>
-          <span class="price-save">Save $265 a month</span>
-          <ul class="price-includes">
-            <li>Everything in the Music and Art Bundle</li>
-            <li>Everything in the Movement and Garden Bundle</li>
-          </ul>
+          <h3>A class that meets three times a week</h3>
+          <p class="price-when">Daytime Group Movement</p>
+          <div class="price-amt">$315<small> / month</small></div>
         </div>
+      </div>
 
-        <div class="price-card best">
-          <span class="price-flag">Best Value</span>
-          <h3>5-Day Pass</h3>
-          <p class="price-when">Monday to Friday, 4:00 - 6:00 PM</p>
-          <div class="price-amt">$750<small> / month</small></div>
-          <span class="price-save">Save $480 a month</span>
-          <ul class="price-includes">
-            <li>Every after-school class we offer</li>
-            <li>Guided Jam &amp; Improv and Logic Lab</li>
-          </ul>
-        </div>
+      <div class="rate-scale reveal">
+        <h3>Taking more than one class</h3>
+        <p>Add up how many times a week your child's classes meet. The more sessions, the lower the rate for every one of them.</p>
+        <ul class="rate-steps">
+          <li><span class="rs-n">1 a week</span><span class="rs-p">$135</span></li>
+          <li><span class="rs-n">2 a week</span><span class="rs-p">$230</span></li>
+          <li><span class="rs-n">3 a week</span><span class="rs-p">$315</span></li>
+          <li><span class="rs-n">4 a week</span><span class="rs-p">$395</span></li>
+          <li><span class="rs-n">5 a week</span><span class="rs-p">$475</span></li>
+          <li><span class="rs-n">6 a week</span><span class="rs-p">$545</span></li>
+          <li><span class="rs-n">7 a week</span><span class="rs-p">$620</span></li>
+          <li><span class="rs-n">8 a week</span><span class="rs-p">$695</span></li>
+          <li><span class="rs-n">9 a week</span><span class="rs-p">$725</span></li>
+          <li><span class="rs-n">10 a week</span><span class="rs-p">$750</span></li>
+        </ul>
+        <p class="rate-steps-note">Daytime students who add group tutoring can go past ten sessions a week. Each session beyond ten is $25.</p>
       </div>
     </div>
   </section>
 
-  <!-- BUILD YOUR WEEK -->
+  <!-- CHOOSE YOUR CLASSES -->
   <section class="section bg-light">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">Or Build Your Own</div>
-        <h2>Build Your Week</h2>
-        <p class="section-intro">Choose any after-school classes you like, for ages 5 to 11. The more you add, the more you save, and your total updates as you go.</p>
+        <div class="section-tag">See Your Price</div>
+        <h2>Choose Your Classes</h2>
+        <p class="section-intro">Pick daytime or afternoon, then choose any classes you like. Each one shows its price on its own, and your total updates as you go.</p>
+      </div>
+
+      <div class="period-toggle">
+        <button type="button" class="period-btn" data-period="day" aria-pressed="false">Daytime <small>homeschooled students</small></button>
+        <button type="button" class="period-btn is-active" data-period="after" aria-pressed="true">Afternoon <small>traditional school students</small></button>
       </div>
 
       <div class="picker">
-        <div class="pick-list">
-          <div class="preset-row">
-            <span class="preset-label">Quick start</span>
-            <button type="button" class="preset" data-preset="friday">Friday Bundle</button>
-            <button type="button" class="preset" data-preset="trackA">Music &amp; Art</button>
-            <button type="button" class="preset" data-preset="trackB">Movement &amp; Garden</button>
-            <button type="button" class="preset" data-preset="four">4-Day</button>
-            <button type="button" class="preset" data-preset="five">5-Day</button>
-            <button type="button" class="preset preset-clear" data-preset="clear">Clear</button>
+        <div class="pick-lists">
+          <div class="pick-list" data-period="day">
+            <p class="pick-list-title">Daytime, 11:00 AM to 2:00 PM</p>
+            <div class="preset-row">
+              <span class="preset-label">Quick start</span>
+              <button type="button" class="preset" data-preset="day-music">Music &amp; Art</button>
+              <button type="button" class="preset" data-preset="day-move">Movement &amp; Garden</button>
+              <button type="button" class="preset" data-preset="day-fri">Jam &amp; Logic</button>
+              <button type="button" class="preset" data-preset="day-tutor">Math &amp; Reading Tutoring</button>
+              <button type="button" class="preset preset-clear" data-preset="clear">Clear</button>
+            </div>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-move" data-days="mon,wed,fri" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Group Movement</span>
+                <span class="pick-when">Monday, Wednesday &amp; Friday, 12:00 - 1:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$315/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-garden" data-days="mon,wed" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Gardening</span>
+                <span class="pick-when">Monday &amp; Wednesday, 1:00 - 2:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-ensemble" data-days="tue" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Music Ensemble</span>
+                <span class="pick-when">Tuesday, 12:00 - 1:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-arts" data-days="tue,thu" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Arts &amp; Crafts</span>
+                <span class="pick-when">Tuesday &amp; Thursday, 1:00 - 2:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-choir" data-days="thu" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name"><span class="brand-red">Harmony</span> Choir</span>
+                <span class="pick-when">Thursday, 12:00 - 1:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-jam" data-days="fri" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Guided Jam &amp; Improv</span>
+                <span class="pick-when">Friday, 11:00 AM - 12:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-logic" data-days="fri" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Logic Lab</span>
+                <span class="pick-when">Friday, 1:00 - 2:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+
+            <p class="pick-group-label">Group tutoring</p>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-math" data-days="mon,tue" data-kind="tutoring">
+              <span class="pick-body">
+                <span class="pick-name">Math Group Tutoring</span>
+                <span class="pick-when">Monday &amp; Tuesday, 11:00 AM - 12:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="d-reading" data-days="wed,thu" data-kind="tutoring">
+              <span class="pick-body">
+                <span class="pick-name">Reading Group Tutoring</span>
+                <span class="pick-when">Wednesday &amp; Thursday, 11:00 AM - 12:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
           </div>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="ensemble" data-hrs="1">
-            <span class="pick-body">
-              <span class="pick-name">Music Ensemble</span>
-              <span class="pick-when">Monday, 4:00 - 5:00 PM</span>
-            </span>
-            <span class="pick-hrs">1 hr</span>
-          </label>
+          <div class="pick-list" data-period="after">
+            <p class="pick-list-title">Afternoon, 4:00 to 6:00 PM</p>
+            <div class="preset-row">
+              <span class="preset-label">Quick start</span>
+              <button type="button" class="preset" data-preset="after-music">Music &amp; Art</button>
+              <button type="button" class="preset" data-preset="after-move">Movement &amp; Garden</button>
+              <button type="button" class="preset" data-preset="after-fri">Jam &amp; Logic</button>
+              <button type="button" class="preset" data-preset="after-all">All Seven Classes</button>
+              <button type="button" class="preset preset-clear" data-preset="clear">Clear</button>
+            </div>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="choir" data-hrs="1">
-            <span class="pick-body">
-              <span class="pick-name"><span class="brand-red">Harmony</span> Choir</span>
-              <span class="pick-when">Wednesday, 4:00 - 5:00 PM</span>
-            </span>
-            <span class="pick-hrs">1 hr</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-move" data-days="mon,wed" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Group Movement</span>
+                <span class="pick-when">Monday &amp; Wednesday, 4:00 - 5:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="arts" data-hrs="2">
-            <span class="pick-body">
-              <span class="pick-name">Arts &amp; Crafts</span>
-              <span class="pick-when">Monday &amp; Wednesday, 5:00 - 6:00 PM</span>
-            </span>
-            <span class="pick-hrs">2 hrs</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-garden" data-days="mon,wed" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Gardening</span>
+                <span class="pick-when">Monday &amp; Wednesday, 5:00 - 6:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="move" data-hrs="2">
-            <span class="pick-body">
-              <span class="pick-name">Group Movement</span>
-              <span class="pick-when">Tuesday &amp; Thursday, 4:00 - 5:00 PM</span>
-            </span>
-            <span class="pick-hrs">2 hrs</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-ensemble" data-days="tue" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Music Ensemble</span>
+                <span class="pick-when">Tuesday, 4:00 - 5:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="garden" data-hrs="2">
-            <span class="pick-body">
-              <span class="pick-name">Gardening</span>
-              <span class="pick-when">Tuesday &amp; Thursday, 5:00 - 6:00 PM</span>
-            </span>
-            <span class="pick-hrs">2 hrs</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-arts" data-days="tue,thu" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Arts &amp; Crafts</span>
+                <span class="pick-when">Tuesday &amp; Thursday, 5:00 - 6:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$230/mo</span>
+            </label>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="jam" data-hrs="1">
-            <span class="pick-body">
-              <span class="pick-name">Guided Jam &amp; Improv</span>
-              <span class="pick-when">Friday, 4:00 - 5:00 PM</span>
-            </span>
-            <span class="pick-hrs">1 hr</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-choir" data-days="thu" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name"><span class="brand-red">Harmony</span> Choir</span>
+                <span class="pick-when">Thursday, 4:00 - 5:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
 
-          <label class="pick-item">
-            <input type="checkbox" data-id="logic" data-hrs="1">
-            <span class="pick-body">
-              <span class="pick-name">Logic Lab</span>
-              <span class="pick-when">Friday, 5:00 - 6:00 PM</span>
-            </span>
-            <span class="pick-hrs">1 hr</span>
-          </label>
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-jam" data-days="fri" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Guided Jam &amp; Improv</span>
+                <span class="pick-when">Friday, 4:00 - 5:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+
+            <label class="pick-item">
+              <input type="checkbox" data-id="a-logic" data-days="fri" data-kind="class">
+              <span class="pick-body">
+                <span class="pick-name">Logic Lab</span>
+                <span class="pick-when">Friday, 5:00 - 6:00 PM</span>
+                <span class="pick-block" hidden></span>
+              </span>
+              <span class="pick-price">$135/mo</span>
+            </label>
+          </div>
         </div>
 
         <aside class="pick-summary">
           <div class="ps-inner">
-            <div class="ps-head">Your Week</div>
+            <div class="ps-head">Your Classes<span id="psPeriod"></span></div>
 
             <p class="ps-empty" id="psEmpty">Select a class to see your monthly price.</p>
 
             <div id="psFigures" hidden>
               <div class="ps-amt"><span id="psTotal">$0</span><small> / month</small></div>
+              <p class="ps-meta" id="psSessions"></p>
               <p class="ps-save" id="psSave" hidden></p>
               <ul class="ps-chosen" id="psChosen"></ul>
               <p class="ps-nudge" id="psNudge" hidden></p>
             </div>
 
+            <p class="ps-rule" id="psRule">One-hour sessions. Up to two classes a day.</p>
             <a href="/#waitlist" class="btn-primary ps-cta">Request Information</a>
           </div>
         </aside>
@@ -909,136 +1138,177 @@
         <a href="/#waitlist" class="btn-primary">Book a Trial Class</a>
       </div>
 
-      <p class="section-foot">Prices are monthly. Daytime classes, Mommy &amp; Me and private lessons are priced separately below.</p>
+      <p class="section-foot">Prices are monthly. Mommy &amp; Me and one-to-one lessons are priced separately below. Mixing daytime and afternoon classes? Ask us and we will put it together.</p>
     </div>
   </section>
 
   <script>
-    /* Build Your Week picker for the after-school classes (K-5, ages 5 to 11).
-       Progressive enhancement: without JS the checkboxes simply do nothing and
-       the published bundles above still tell a parent what things cost. */
+    /* Choose Your Classes. One class is the unit a family buys; taking more
+       than one lowers the rate for each. Progressive enhancement: without JS
+       both lists show and the price cards above still say what things cost. */
     (function () {
       'use strict';
-      // Pricing is keyed to WEEKLY HOURS, not class count, because several
-      // classes meet twice a week (Arts & Crafts, Group Movement and
-      // Gardening). PRICE[h] is the monthly rate for h weekly hours and
-      // reproduces every published bundle exactly:
-      // 2h=$230, 4h=$395, 8h=$695, 10h=$750.
-      // Music Ensemble and Harmony Choir are one hour each; the rest of the
-      // twice-weekly classes are two.
+      // Monthly price by weekly sessions. Every session is one hour, so a
+      // class that meets twice a week counts as two. PRICE[n] is the rate for
+      // n sessions, and each step is smaller than the last, which is the
+      // multi-class discount. Past ten sessions (reachable only in the
+      // daytime, with group tutoring) each added session is $25, the curve's
+      // own last step.
       var PRICE = [0, 135, 230, 315, 395, 475, 545, 620, 695, 725, 750];
+      function price(n) {
+        var top = PRICE.length - 1;
+        return n <= top ? PRICE[n] : PRICE[top] + (n - top) * 25;
+      }
+
+      // Daily limit per student. 65C-22.008(3)(b)3 caps instruction at two
+      // hours a day. The daytime schedule is going to DCF with group tutoring
+      // proposed as a third hour, so tutoring is counted apart from classes.
+      // If DCF holds the line at two hours, set DAY_MAX to 2.
+      var CLASS_MAX = 2, DAY_MAX = 3;
+
       var PRESETS = {
-        friday: ['jam', 'logic'],
-        trackA: ['ensemble', 'choir', 'arts'],
-        trackB: ['move', 'garden'],
-        four:   ['ensemble', 'choir', 'arts', 'move', 'garden'],
-        five:   ['ensemble', 'choir', 'arts', 'move', 'garden', 'jam', 'logic'],
-        clear:  []
+        'after-music': ['a-ensemble', 'a-choir', 'a-arts'],
+        'after-move':  ['a-move', 'a-garden'],
+        'after-fri':   ['a-jam', 'a-logic'],
+        'after-all':   ['a-move', 'a-garden', 'a-ensemble', 'a-arts', 'a-choir', 'a-jam', 'a-logic'],
+        'day-music':   ['d-ensemble', 'd-choir', 'd-arts'],
+        'day-move':    ['d-move', 'd-garden'],
+        'day-fri':     ['d-jam', 'd-logic'],
+        'day-tutor':   ['d-math', 'd-reading']
+      };
+      var DAY = { mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday', fri: 'Friday' };
+      var NAME = { day: 'Daytime', after: 'Afternoon' };
+      var RULE = {
+        day: 'One-hour sessions. Up to two classes a day, plus that day\u2019s group tutoring.',
+        after: 'One-hour sessions. Up to two classes a day.'
       };
 
-      var boxes = Array.prototype.slice.call(
-        document.querySelectorAll('.pick-item input[type="checkbox"]'));
-      if (!boxes.length) return;
+      var lists = {};
+      Array.prototype.forEach.call(document.querySelectorAll('.pick-list[data-period]'), function (el) {
+        lists[el.getAttribute('data-period')] = el;
+      });
+      if (!lists.day || !lists.after) return;
 
-      var elEmpty  = document.getElementById('psEmpty');
-      var elFigs   = document.getElementById('psFigures');
-      var elTotal  = document.getElementById('psTotal');
-      var elSave   = document.getElementById('psSave');
-      var elChosen = document.getElementById('psChosen');
-      var elNudge  = document.getElementById('psNudge');
+      function byId(id) { return document.getElementById(id); }
+      var elEmpty = byId('psEmpty'), elFigs = byId('psFigures'), elTotal = byId('psTotal'),
+          elSessions = byId('psSessions'), elSave = byId('psSave'), elChosen = byId('psChosen'),
+          elNudge = byId('psNudge'), elRule = byId('psRule'), elPeriod = byId('psPeriod');
+      var toggles = Array.prototype.slice.call(document.querySelectorAll('.period-btn'));
+      var period = 'after';
 
+      function boxes(p) {
+        return Array.prototype.slice.call(lists[p].querySelectorAll('input[type="checkbox"]'));
+      }
+      function daysOf(b) { return b.getAttribute('data-days').split(','); }
+      function isTutoring(b) { return b.getAttribute('data-kind') === 'tutoring'; }
       function money(n) { return '$' + n.toLocaleString('en-US'); }
 
+      // Classes and tutoring already booked on each weekday.
+      function loadOf(checked) {
+        var load = {};
+        checked.forEach(function (b) {
+          daysOf(b).forEach(function (d) {
+            var l = load[d] || (load[d] = { cls: 0, tut: 0 });
+            if (isTutoring(b)) { l.tut++; } else { l.cls++; }
+          });
+        });
+        return load;
+      }
+
+      // The first weekday on which adding this class would break the limit.
+      function blockedOn(load, b) {
+        var ds = daysOf(b);
+        for (var i = 0; i < ds.length; i++) {
+          var l = load[ds[i]] || { cls: 0, tut: 0 };
+          var cls = l.cls + (isTutoring(b) ? 0 : 1);
+          if (cls > CLASS_MAX || l.cls + l.tut + 1 > DAY_MAX) { return ds[i]; }
+        }
+        return null;
+      }
+
       function update() {
-        boxes.forEach(function (b) { b.parentNode.classList.toggle('is-on', b.checked); });
-        var checked = boxes.filter(function (b) { return b.checked; });
+        var all = boxes(period);
+        var checked = all.filter(function (b) { return b.checked; });
+        var load = loadOf(checked);
+        var open = 0;
+
+        all.forEach(function (b) {
+          var item = b.parentNode, note = item.querySelector('.pick-block');
+          var day = b.checked ? null : blockedOn(load, b);
+          b.disabled = !!day;
+          item.classList.toggle('is-on', b.checked);
+          item.classList.toggle('is-blocked', !!day);
+          if (note) {
+            note.hidden = !day;
+            note.textContent = day ? 'Over the daily limit on ' + DAY[day] : '';
+          }
+          if (!b.checked && !day) { open++; }
+        });
+
+        elPeriod.textContent = ' \u00b7 ' + NAME[period];
+        elRule.textContent = RULE[period];
 
         if (!checked.length) { elEmpty.hidden = false; elFigs.hidden = true; return; }
         elEmpty.hidden = true; elFigs.hidden = false;
 
-        var hours = 0, names = [];
-        checked.forEach(function (b) {
-          hours += parseFloat(b.getAttribute('data-hrs'));
-          names.push(b.parentNode.querySelector('.pick-name').textContent);
-        });
-
-        var total = PRICE[hours];
-        elTotal.textContent = money(total);
-
-        // Compare against buying each selected class on its own, which is the
-        // real alternative a parent has. Comparing against a notional per-hour
-        // list price would overstate it and contradict the bundle cards above.
-        var apart = 0;
-        checked.forEach(function (b) { apart += PRICE[parseFloat(b.getAttribute('data-hrs'))]; });
-        var save = apart - total;
-        if (save > 0) {
-          elSave.textContent = 'You save ' + money(save) + ' a month';
-          elSave.hidden = false;
-        } else { elSave.hidden = true; }
-
+        var sessions = 0, apart = 0;
         elChosen.innerHTML = '';
-        names.forEach(function (n) {
+        checked.forEach(function (b) {
+          var n = daysOf(b).length;
+          sessions += n;
+          apart += price(n);
           var li = document.createElement('li');
-          li.textContent = n;
+          li.textContent = b.parentNode.querySelector('.pick-name').textContent;
           elChosen.appendChild(li);
         });
 
-        // The discount deepens at every step, so more classes always means more
-        // saved. Safe to say plainly now that every class sits on one curve.
-        elNudge.textContent = checked.length < boxes.length
-          ? 'Adding another class increases your savings.'
-          : 'That is every after-school class we offer.';
+        var total = price(sessions);
+        elTotal.textContent = money(total);
+        elSessions.textContent = sessions + (sessions === 1 ? ' session' : ' sessions') + ' a week';
+
+        // Against buying each chosen class on its own: the real alternative.
+        var save = apart - total;
+        elSave.hidden = save <= 0;
+        if (save > 0) { elSave.textContent = 'You save ' + money(save) + ' a month'; }
+
+        elNudge.textContent = open
+          ? 'Adding another class lowers the rate for every class.'
+          : (checked.length < all.length
+              ? 'That is as many classes as fit within the daily limit.'
+              : 'That is every class on this schedule.');
         elNudge.hidden = false;
       }
 
-      boxes.forEach(function (b) { b.addEventListener('change', update); });
+      function show(p) {
+        period = p;
+        Object.keys(lists).forEach(function (k) { lists[k].hidden = k !== p; });
+        toggles.forEach(function (t) {
+          var on = t.getAttribute('data-period') === p;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        update();
+      }
+
+      Object.keys(lists).forEach(function (k) {
+        boxes(k).forEach(function (b) { b.addEventListener('change', update); });
+      });
       Array.prototype.forEach.call(document.querySelectorAll('.preset'), function (btn) {
         btn.addEventListener('click', function () {
           var want = PRESETS[btn.getAttribute('data-preset')] || [];
-          boxes.forEach(function (b) {
+          boxes(period).forEach(function (b) {
             b.checked = want.indexOf(b.getAttribute('data-id')) !== -1;
           });
           update();
         });
       });
-      update();
+      toggles.forEach(function (t) {
+        t.addEventListener('click', function () { show(t.getAttribute('data-period')); });
+      });
+      show(period);
     })();
   </script>
 
-  <!-- DAYTIME CLASSES -->
-  <section class="section bg-light">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">For Homeschooled Students</div>
-        <h2>Daytime Classes</h2>
-        <p class="section-intro">The same classes as our after-school schedule, taught during the day for homeschooled students, ages 5 to 11. Classes run between 11:00 AM and 2:00 PM, and you choose how many days a week suit your family.</p>
-      </div>
-
-      <div class="price-grid daytime reveal-stagger">
-        <div class="price-card">
-          <h3>2 Days a Week</h3>
-          <p class="price-when">Tuesday &amp; Thursday</p>
-          <div class="price-amt">$375<small> / month</small></div>
-        </div>
-        <div class="price-card">
-          <h3>3 Days a Week</h3>
-          <p class="price-when">Monday, Wednesday &amp; Friday</p>
-          <div class="price-amt">$500<small> / month</small></div>
-        </div>
-        <div class="price-card">
-          <h3>4 Days a Week</h3>
-          <p class="price-when">Monday to Thursday</p>
-          <div class="price-amt">$630<small> / month</small></div>
-        </div>
-        <div class="price-card best">
-          <span class="price-flag">Best Value</span>
-          <h3>5 Days a Week</h3>
-          <p class="price-when">Monday to Friday</p>
-          <div class="price-amt">$750<small> / month</small></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- MOMMY AND ME -->
   <section class="section grad-band">
@@ -1102,9 +1372,13 @@
       <div class="section-header">
         <div class="section-tag">Good to Know</div>
         <h2>How Membership Works</h2>
-        <p class="section-intro">These terms apply to everything above: daytime and after-school classes, Mommy &amp; Me Music, and one-to-one lessons, tutoring and coaching. Straightforward, with nothing hidden in fine print.</p>
+        <p class="section-intro">These terms apply to everything above: daytime and afternoon classes, Mommy &amp; Me Music, and one-to-one lessons, tutoring and coaching. Straightforward, with nothing hidden in fine print.</p>
       </div>
       <div class="terms-grid reveal-stagger">
+        <div class="term-card">
+          <h3>One-hour class sessions</h3>
+          <p>Every class session is one hour, and each student has no more than two hours of instruction in a day, counting private lessons and coaching. Monday to Thursday, daytime students can add that day's group tutoring session as a third hour.</p>
+        </div>
         <div class="term-card">
           <h3>One year, eight equal payments</h3>
           <p>Membership runs the full year, October through May, and the cost of that year is divided into eight equal monthly payments. Some months hold far fewer class days than others once Thanksgiving, winter break and spring break are taken out. Your payment stays the same every month either way, so you're never guessing the amount due next month.</p>
@@ -1119,7 +1393,7 @@
         </div>
         <div class="term-card">
           <h3>$100 registration per student</h3>
-          <p>Charged once when your child joins, not monthly. It covers their class materials for the year and their own Harmony and Health Microschool T-shirt, and applies to daytime and after-school classes alike.</p>
+          <p>Charged once when your child joins, not monthly. It covers their class materials for the year and their own Harmony and Health Microschool T-shirt, and applies to daytime and afternoon classes alike.</p>
         </div>
         <div class="term-card">
           <h3>Try a class first</h3>
@@ -1146,7 +1420,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="logo-footer.png" alt="Harmony and Health Microschool" class="footer-logo">
-          <p>A music and movement enrichment<br>center in Miami, FL.</p>
+          <p>A music and movement enrichment<br>studio in Miami, FL.</p>
           <p class="footer-opening">Now enrolling &middot; Classes begin in October</p>
           <p class="footer-legal">Harmony and Health Microschool</p>
           <img src="catalyst-partner-badge.svg" alt="Kaipod Catalyst Partner" class="footer-badge">

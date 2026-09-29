@@ -38,7 +38,7 @@ function welcomeEmail(firstName) {
       "<p>Thanks so much for reaching out. I'm Chris, and Monika and I started Harmony and Health Microschool together, so I wanted to say hello personally.</p>" +
       "<p>The next step is just a chat about your child: what they are drawn to, what they love doing, and what you are hoping to find for them. That usually tells us pretty quickly which of our classes would suit them best.</p>" +
       '<p>Call or text us any time at ' + PHONE + ", or simply reply to this email, whichever is easiest for you. We'll get back to you quickly either way.</p>" +
-      "<p>We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.</p>" +
+      "<p>We keep every class small on purpose, so every child gets real instruction and real attention. We can't wait to learn your family's story.</p>" +
       '<p>Warmly,<br>Chris and Monika<br>Harmony and Health Microschool<br>' + PHONE + '</p>' +
     '</div>'
   );
@@ -54,7 +54,7 @@ function welcomeText(firstName) {
     '',
     'Call or text us any time at ' + PHONE + ", or simply reply to this email, whichever is easiest for you. We'll get back to you quickly either way.",
     '',
-    "We keep every class small on purpose, so we have the time to really know each child rather than just supervise a room. We can't wait to learn your family's story.",
+    "We keep every class small on purpose, so every child gets real instruction and real attention. We can't wait to learn your family's story.",
     '',
     'Warmly,',
     'Chris and Monika',
