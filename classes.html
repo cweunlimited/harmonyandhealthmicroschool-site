@@ -669,7 +669,7 @@
       margin: 0;
       padding: 0;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
     .rate-steps li {
@@ -686,7 +686,6 @@
       font-size: 1.25rem;
       color: var(--navy-bright, #5730C6);
     }
-    .rate-scale .rate-steps-note { margin: 14px auto 0; font-size: 0.88rem; }
     @media (max-width: 760px) {
       .rate-steps { grid-template-columns: repeat(2, 1fr); }
     }
@@ -865,7 +864,7 @@
       <div class="section-header">
         <div class="section-tag">Pricing</div>
         <h2>Priced by the Class</h2>
-        <p class="section-intro">Every class is priced on its own, by how many times a week it meets. Take more than one and the rate for each one drops. Prices are monthly, and daytime and afternoon classes are priced the same way.</p>
+        <p class="section-intro">Every class is priced on its own, by how many times a week it meets, and every class you add takes another 5% off your total. Prices are monthly, and daytime and afternoon classes are priced the same way.</p>
       </div>
 
       <div class="price-grid base reveal-stagger">
@@ -888,20 +887,17 @@
 
       <div class="rate-scale reveal">
         <h3>Taking more than one class</h3>
-        <p>Add up how many times a week your child's classes meet. The more sessions, the lower the rate for every one of them.</p>
+        <p>Your first class is full price. Each class you add takes another 5% off your total.</p>
         <ul class="rate-steps">
-          <li><span class="rs-n">1 a week</span><span class="rs-p">$135</span></li>
-          <li><span class="rs-n">2 a week</span><span class="rs-p">$230</span></li>
-          <li><span class="rs-n">3 a week</span><span class="rs-p">$315</span></li>
-          <li><span class="rs-n">4 a week</span><span class="rs-p">$395</span></li>
-          <li><span class="rs-n">5 a week</span><span class="rs-p">$475</span></li>
-          <li><span class="rs-n">6 a week</span><span class="rs-p">$545</span></li>
-          <li><span class="rs-n">7 a week</span><span class="rs-p">$620</span></li>
-          <li><span class="rs-n">8 a week</span><span class="rs-p">$695</span></li>
-          <li><span class="rs-n">9 a week</span><span class="rs-p">$725</span></li>
-          <li><span class="rs-n">10 a week</span><span class="rs-p">$750</span></li>
+          <li><span class="rs-n">1 class</span><span class="rs-p">Full price</span></li>
+          <li><span class="rs-n">2 classes</span><span class="rs-p">5% off</span></li>
+          <li><span class="rs-n">3 classes</span><span class="rs-p">10% off</span></li>
+          <li><span class="rs-n">4 classes</span><span class="rs-p">15% off</span></li>
+          <li><span class="rs-n">5 classes</span><span class="rs-p">20% off</span></li>
+          <li><span class="rs-n">6 classes</span><span class="rs-p">25% off</span></li>
+          <li><span class="rs-n">7 classes</span><span class="rs-p">30% off</span></li>
+          <li><span class="rs-n">8 classes</span><span class="rs-p">35% off</span></li>
         </ul>
-        <p class="rate-steps-note">Daytime students who add group tutoring can go past ten sessions a week. Each session beyond ten is $25.</p>
       </div>
     </div>
   </section>
@@ -934,7 +930,7 @@
             </div>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-move" data-days="mon,wed,fri" data-kind="class">
+              <input type="checkbox" data-id="d-move" data-days="mon,wed,fri" data-price="315" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Group Movement</span>
                 <span class="pick-when">Monday, Wednesday &amp; Friday, 12:00 - 1:00 PM</span>
@@ -944,7 +940,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-garden" data-days="mon,wed" data-kind="class">
+              <input type="checkbox" data-id="d-garden" data-days="mon,wed" data-price="230" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Gardening</span>
                 <span class="pick-when">Monday &amp; Wednesday, 1:00 - 2:00 PM</span>
@@ -954,7 +950,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-ensemble" data-days="tue" data-kind="class">
+              <input type="checkbox" data-id="d-ensemble" data-days="tue" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Music Ensemble</span>
                 <span class="pick-when">Tuesday, 12:00 - 1:00 PM</span>
@@ -964,7 +960,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-arts" data-days="tue,thu" data-kind="class">
+              <input type="checkbox" data-id="d-arts" data-days="tue,thu" data-price="230" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Arts &amp; Crafts</span>
                 <span class="pick-when">Tuesday &amp; Thursday, 1:00 - 2:00 PM</span>
@@ -974,7 +970,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-choir" data-days="thu" data-kind="class">
+              <input type="checkbox" data-id="d-choir" data-days="thu" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name"><span class="brand-red">Harmony</span> Choir</span>
                 <span class="pick-when">Thursday, 12:00 - 1:00 PM</span>
@@ -984,7 +980,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-jam" data-days="fri" data-kind="class">
+              <input type="checkbox" data-id="d-jam" data-days="fri" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Guided Jam &amp; Improv</span>
                 <span class="pick-when">Friday, 11:00 AM - 12:00 PM</span>
@@ -994,7 +990,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-logic" data-days="fri" data-kind="class">
+              <input type="checkbox" data-id="d-logic" data-days="fri" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Logic Lab</span>
                 <span class="pick-when">Friday, 1:00 - 2:00 PM</span>
@@ -1006,7 +1002,7 @@
             <p class="pick-group-label">Group tutoring</p>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-math" data-days="mon,tue" data-kind="tutoring">
+              <input type="checkbox" data-id="d-math" data-days="mon,tue" data-price="230" data-kind="tutoring">
               <span class="pick-body">
                 <span class="pick-name">Math Group Tutoring</span>
                 <span class="pick-when">Monday &amp; Tuesday, 11:00 AM - 12:00 PM</span>
@@ -1016,7 +1012,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="d-reading" data-days="wed,thu" data-kind="tutoring">
+              <input type="checkbox" data-id="d-reading" data-days="wed,thu" data-price="230" data-kind="tutoring">
               <span class="pick-body">
                 <span class="pick-name">Reading Group Tutoring</span>
                 <span class="pick-when">Wednesday &amp; Thursday, 11:00 AM - 12:00 PM</span>
@@ -1038,7 +1034,7 @@
             </div>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-move" data-days="mon,wed" data-kind="class">
+              <input type="checkbox" data-id="a-move" data-days="mon,wed" data-price="230" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Group Movement</span>
                 <span class="pick-when">Monday &amp; Wednesday, 4:00 - 5:00 PM</span>
@@ -1048,7 +1044,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-garden" data-days="mon,wed" data-kind="class">
+              <input type="checkbox" data-id="a-garden" data-days="mon,wed" data-price="230" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Gardening</span>
                 <span class="pick-when">Monday &amp; Wednesday, 5:00 - 6:00 PM</span>
@@ -1058,7 +1054,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-ensemble" data-days="tue" data-kind="class">
+              <input type="checkbox" data-id="a-ensemble" data-days="tue" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Music Ensemble</span>
                 <span class="pick-when">Tuesday, 4:00 - 5:00 PM</span>
@@ -1068,7 +1064,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-arts" data-days="tue,thu" data-kind="class">
+              <input type="checkbox" data-id="a-arts" data-days="tue,thu" data-price="230" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Arts &amp; Crafts</span>
                 <span class="pick-when">Tuesday &amp; Thursday, 5:00 - 6:00 PM</span>
@@ -1078,7 +1074,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-choir" data-days="thu" data-kind="class">
+              <input type="checkbox" data-id="a-choir" data-days="thu" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name"><span class="brand-red">Harmony</span> Choir</span>
                 <span class="pick-when">Thursday, 4:00 - 5:00 PM</span>
@@ -1088,7 +1084,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-jam" data-days="fri" data-kind="class">
+              <input type="checkbox" data-id="a-jam" data-days="fri" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Guided Jam &amp; Improv</span>
                 <span class="pick-when">Friday, 4:00 - 5:00 PM</span>
@@ -1098,7 +1094,7 @@
             </label>
 
             <label class="pick-item">
-              <input type="checkbox" data-id="a-logic" data-days="fri" data-kind="class">
+              <input type="checkbox" data-id="a-logic" data-days="fri" data-price="135" data-kind="class">
               <span class="pick-body">
                 <span class="pick-name">Logic Lab</span>
                 <span class="pick-when">Friday, 5:00 - 6:00 PM</span>
@@ -1117,7 +1113,7 @@
 
             <div id="psFigures" hidden>
               <div class="ps-amt"><span id="psTotal">$0</span><small> / month</small></div>
-              <p class="ps-meta" id="psSessions"></p>
+              <p class="ps-meta" id="psCount"></p>
               <p class="ps-save" id="psSave" hidden></p>
               <ul class="ps-chosen" id="psChosen"></ul>
               <p class="ps-nudge" id="psNudge" hidden></p>
@@ -1142,22 +1138,14 @@
   </section>
 
   <script>
-    /* Choose Your Classes. One class is the unit a family buys; taking more
-       than one lowers the rate for each. Progressive enhancement: without JS
-       both lists show and the price cards above still say what things cost. */
+    /* Choose Your Classes. One class is the unit a family buys. Each class
+       carries its own monthly price in data-price, and every class added
+       takes another 5% off the total: two classes 5%, three 10%, four 15%.
+       Progressive enhancement: without JS both lists show and the price
+       cards above still say what things cost. */
     (function () {
       'use strict';
-      // Monthly price by weekly sessions. Every session is one hour, so a
-      // class that meets twice a week counts as two. PRICE[n] is the rate for
-      // n sessions, and each step is smaller than the last, which is the
-      // multi-class discount. Past ten sessions (reachable only in the
-      // daytime, with group tutoring) each added session is $25, the curve's
-      // own last step.
-      var PRICE = [0, 135, 230, 315, 395, 475, 545, 620, 695, 725, 750];
-      function price(n) {
-        var top = PRICE.length - 1;
-        return n <= top ? PRICE[n] : PRICE[top] + (n - top) * 25;
-      }
+      var STEP = 5;   // percent off added for each class beyond the first
 
       // Daily limit per student. 65C-22.008(3)(b)3 caps instruction at two
       // hours a day. The daytime schedule is going to DCF with group tutoring
@@ -1190,7 +1178,7 @@
 
       function byId(id) { return document.getElementById(id); }
       var elEmpty = byId('psEmpty'), elFigs = byId('psFigures'), elTotal = byId('psTotal'),
-          elSessions = byId('psSessions'), elSave = byId('psSave'), elChosen = byId('psChosen'),
+          elCount = byId('psCount'), elSave = byId('psSave'), elChosen = byId('psChosen'),
           elNudge = byId('psNudge'), elRule = byId('psRule'), elPeriod = byId('psPeriod');
       var toggles = Array.prototype.slice.call(document.querySelectorAll('.period-btn'));
       var period = 'after';
@@ -1200,7 +1188,15 @@
       }
       function daysOf(b) { return b.getAttribute('data-days').split(','); }
       function isTutoring(b) { return b.getAttribute('data-kind') === 'tutoring'; }
-      function money(n) { return '$' + n.toLocaleString('en-US'); }
+      function priceOf(b) { return parseFloat(b.getAttribute('data-price')) || 0; }
+
+      // Whole dollars when the amount is whole, cents only when it is not.
+      function money(cents) {
+        var whole = cents % 100 === 0;
+        return '$' + (cents / 100).toLocaleString('en-US', {
+          minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2
+        });
+      }
 
       // Classes and tutoring already booked on each weekday.
       function loadOf(checked) {
@@ -1250,28 +1246,27 @@
         if (!checked.length) { elEmpty.hidden = false; elFigs.hidden = true; return; }
         elEmpty.hidden = true; elFigs.hidden = false;
 
-        var sessions = 0, apart = 0;
+        // Sum in cents so the percentage never leaves a floating-point penny.
+        var n = checked.length, fullCents = 0;
         elChosen.innerHTML = '';
         checked.forEach(function (b) {
-          var n = daysOf(b).length;
-          sessions += n;
-          apart += price(n);
+          fullCents += Math.round(priceOf(b) * 100);
           var li = document.createElement('li');
           li.textContent = b.parentNode.querySelector('.pick-name').textContent;
           elChosen.appendChild(li);
         });
+        var pct = STEP * (n - 1);
+        var totalCents = Math.round(fullCents * (100 - pct) / 100);
 
-        var total = price(sessions);
-        elTotal.textContent = money(total);
-        elSessions.textContent = sessions + (sessions === 1 ? ' session' : ' sessions') + ' a week';
+        elTotal.textContent = money(totalCents);
+        elCount.textContent = n === 1 ? '1 class, full price' : n + ' classes, ' + pct + '% off';
 
-        // Against buying each chosen class on its own: the real alternative.
-        var save = apart - total;
-        elSave.hidden = save <= 0;
-        if (save > 0) { elSave.textContent = 'You save ' + money(save) + ' a month'; }
+        var saveCents = fullCents - totalCents;
+        elSave.hidden = saveCents <= 0;
+        if (saveCents > 0) { elSave.textContent = 'You save ' + money(saveCents) + ' a month'; }
 
         elNudge.textContent = open
-          ? 'Adding another class lowers the rate for every class.'
+          ? 'Add another class to take another 5% off.'
           : (checked.length < all.length
               ? 'That is as many classes as fit within the daily limit.'
               : 'That is every class on this schedule.');
